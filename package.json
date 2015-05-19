@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/UCSoftware/glassfrog-js",
   "dependencies": {
+    "bluebird": "^2.9.25",
     "request": "^2.55.0"
   },
   "devDependencies": {
