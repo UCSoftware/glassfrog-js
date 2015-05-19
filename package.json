@@ -1,0 +1,22 @@
+{
+  "name": "glassfrog-js",
+  "version": "0.1.0",
+  "description": "Node.js wrapper for the GlassFrog API.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UCSoftware/glassfrog-js.git"
+  },
+  "author": "Undercurrent",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UCSoftware/glassfrog-js/issues"
+  },
+  "homepage": "https://github.com/UCSoftware/glassfrog-js"
+}
