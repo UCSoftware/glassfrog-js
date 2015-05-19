@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/UCSoftware/glassfrog-js/issues"
   },
-  "homepage": "https://github.com/UCSoftware/glassfrog-js"
+  "homepage": "https://github.com/UCSoftware/glassfrog-js",
+  "dependencies": {
+    "request": "^2.55.0"
+  }
 }
