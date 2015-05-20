@@ -46,7 +46,7 @@ gf.find('circles').withID($ID).then(function (response) {
 
 These functions pull data from GlassFrog with GET HTTP requests.
 
-#### General form:
+###### General form:
 
 All GET functions begin with the *find* function and specify a **$TYPE**
 
