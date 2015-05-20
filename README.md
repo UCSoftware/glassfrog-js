@@ -35,7 +35,7 @@ All complete query functions return an object with the *then(callback)* method.
 The complete form of a function might look like:
 
 ```javascript
-gf.get('circles').withID($ID).then(function (response) {
+gf.get().circles().withID($ID).then(function (response) {
 		console.log(JSON.parse(response[1]));
 	}).catch(function (error) {
 		console.log("There was an " + error);
@@ -48,10 +48,10 @@ These functions pull data from GlassFrog with GET HTTP requests.
 
 ###### General form:
 
-All GET functions begin with the *get* function and specify a **$TYPE**.
+All GET functions begin with the *get* function.
 
 ```javascript
-gf.get($TYPE) ...
+gf.get() ...
 ```
 
 #### Circles
@@ -59,13 +59,13 @@ gf.get($TYPE) ...
 ##### Get all circles with an ID of **$ID**:
 
 ```javascript
-gf.get('circles').withID($ID).then(...).catch(...);
+gf.get().circles().withID($ID).then(...).catch(...);
 ```
 
 ##### Get all circles:
 
 ```javascript
-gf.get('circles').all().then(...).catch(...);
+gf.get().circles().all().then(...).catch(...);
 ```
 
 #### Roles
@@ -73,31 +73,31 @@ gf.get('circles').all().then(...).catch(...);
 ##### Get all roles with an ID of **$ID**:
 
 ```javascript
-gf.get('roles').withID($ID).then(...).catch(...);
+gf.get().roles().withID($ID).then(...).catch(...);
 ```
 
-##### Get all roles within some other type of **$TYPE**:
+##### Get all roles within some other type:
 
 ```javascript
-gf.get('roles').within($TYPE) ...
+gf.get().roles().within() ...
 ```
 
 ###### Get all roles within circles with ID of **$ID**:
 
 ```javascript
-gf.get('roles').within('circles').withID($ID).then(...).catch(...);
+gf.get().roles().within().circles().withID($ID).then(...).catch(...);
 ```
 
 ###### Get all roles within people with ID of **$ID**:
 
 ```javascript
-gf.get('roles').within('people').withID($ID).then(...).catch(...);
+gf.get().roles().within().people().withID($ID).then(...).catch(...);
 ```
 
 ##### Get all roles:
 
 ```javascript
-gf.get('roles').all().then(...).catch(...);
+gf.get().roles().all().then(...).catch(...);
 ```
 
 #### People
@@ -105,55 +105,55 @@ gf.get('roles').all().then(...).catch(...);
 ##### Get all people with ID of **$ID**:
 
 ```javascript
-gf.get('people').withID($ID).then(...).catch(...);
+gf.get().people().withID($ID).then(...).catch(...);
 ```
 
-##### Get all people within some other type of **$TYPE**:
+##### Get all people within some other type:
 
 ```javascript
-gf.get('people').within($TYPE) ...
+gf.get().people().within() ...
 ```
 
 ###### Get all people within circles with ID of **$ID**:
 
 ```javascript
-gf.get('people').within('circles').withID($ID).then(...).catch(...);
+gf.get().people().within().circles().withID($ID).then(...).catch(...);
 ```
 
 ###### Get all people within roles with name of **'secretary'**:
 
 ```javascript
-gf.get('people').within('roles').withName('secretary').then(...).catch(...);
+gf.get().people().within().roles().withName('secretary').then(...).catch(...);
 ```
 
 ###### Get all people within roles with name of **'rep link'** or **'rep_link'**:
 
 ```javascript
-gf.get('people').within('roles').withName('rep_link').then(...).catch(...);
+gf.get().people().within().roles().withName('rep_link').then(...).catch(...);
 ```
 ```javascript
-gf.get('people').within('roles').withName('rep link').then(...).catch(...);
+gf.get().people().within().roles().withName('rep link').then(...).catch(...);
 ```
 
 ###### Get all people within roles with name of **'lead link'** or **'lead_link'**:
 
 ```javascript
-gf.get('people').within('roles').withName('lead_link').then(...).catch(...);
+gf.get().people().within().roles().withName('lead_link').then(...).catch(...);
 ```
 ```javascript
-gf.get('people').within('roles').withName('lead link').then(...).catch(...);
+gf.get().people().within().roles().withName('lead link').then(...).catch(...);
 ```
 
 ###### Get all people within roles with name of **'facilitator'**:
 
 ```javascript
-gf.get('people').within('roles').withName('facilitator').then(...).catch(...);
+gf.get().people().within().roles().withName('facilitator').then(...).catch(...);
 ```
 
 ##### Get all people:
 
 ```javascript
-gf.get('people').all().then(...).catch(...);
+gf.get().people().all().then(...).catch(...);
 ```
 
 #### Projects
@@ -161,25 +161,25 @@ gf.get('people').all().then(...).catch(...);
 ##### Get all projects with ID of **$ID**:
 
 ```javascript
-gf.get('projects').withID($ID).then(...).catch(...);
+gf.get().projects().withID($ID).then(...).catch(...);
 ```
 
-##### Get all projects within some other type of **$TYPE**:
+##### Get all projects within some other type:
 
 ```javascript
-gf.get('projects').within($TYPE) ...
+gf.get().projects().within() ...
 ```
 
 ###### Get all projects within circles with ID of **$ID**:
 
 ```javascript
-gf.get('projects').within('circles').withID($ID).then(...).catch(...);
+gf.get().projects().within().circles().withID($ID).then(...).catch(...);
 ```
 
 ##### Get all projects:
 
 ```javascript
-gf.get('projects').all().then(...).catch(...);
+gf.get().projects().all().then(...).catch(...);
 ```
 
 #### Metrics
@@ -187,83 +187,78 @@ gf.get('projects').all().then(...).catch(...);
 ##### Get all metrics with ID of **$ID**:
 
 ```javascript
-gf.get('metrics').withID($ID).then(...).catch(...);
+gf.get().metrics().withID($ID).then(...).catch(...);
 ```
 
-##### Get all metrics within some other type of **$TYPE**:
+##### Get all metrics within some other type:
 
 ```javascript
-gf.get('metrics').within($TYPE) ...
+gf.get().metrics().within() ...
 ```
 
 ###### Get all metrics within circles with ID of **$ID** including global metrics:
 
 ```javascript
-gf.get('metrics').within('circles').withID($ID).withGlobals().then(...).catch(...);
+gf.get().metrics().within().circles().withID($ID).withGlobals().then(...).catch(...);
 ```
 
 ###### Get all metrics within circles with ID of **$ID** **NOT** including global metrics:
 
 ```javascript
-gf.get('metrics').within('circles').withID($ID).withoutGlobals().then(...).catch(...);
+gf.get().metrics().within().circles().withID($ID).withoutGlobals().then(...).catch(...);
 ```
 
 ##### Get all global metrics:
 
 ```javascript
-gf.get('metrics').globals().then(...).catch(...);
+gf.get().metrics().globals().then(...).catch(...);
 ```
 
 ##### Get all metrics:
 
 ```javascript
-gf.get('metrics').all().then(...).catch(...);
+gf.get().metrics().all().then(...).catch(...);
 ```
 
 #### Checklist Items:
-##### Can be specified as either:
 ```javascript
-gf.get('checklist_items').then(...).catch(...);
-```
-##### Or:
-```javascript
-gf.get('checklist items').then(...).catch(...);
+gf.get().checklistItems().then(...).catch(...);
 ```
 
 ##### Get all checklist items with ID of **$ID**:
 
 ```javascript
-gf.get('checklist_items').withID($ID).then(...).catch(...);
+gf.get().checklistItems().withID($ID).then(...).catch(...);
 ```
 
-##### Get all checklist items with some other type of **$TYPE**:
+##### Get all checklist items with some other type:
 
 ```javascript
-gf.get('checklist_items').within($TYPE) ...
+gf.get().checklistItems().within() ...
 ```
 
 ###### Get all checklist items within circles with ID of **$ID** including global checklist items:
 
 ```javascript
-gf.get('checklist_items').within('circles').withID($ID).withGlobals().then(...).catch(...);
+gf.get().checklistItems().within().circles().withID($ID).withGlobals().then(...).catch(...);
 ```
 
 ###### Get all checklist items within circles with ID of **$ID** **NOT** including global checklist items:
 
 ```javascript
-gf.get('checklist_items').within('circles').withID($ID).withoutGlobals().then(...).catch(...);
+gf.get().checklistItems().within().circles().withID($ID).withoutGlobals().then(...).catch(...);
 ```
 
 ##### Get all global checklist items:
 
 ```javascript
-gf.get('checklist_items').globals().then(...).catch(...);
+gf.get().checklistItems().globals().then(...).catch(...);
 ```
 
 ##### Get all checklist items:
 
 ```javascript
-gf.get('checklist_items').all().then(...).catch(...);
+gf.get().checklistItems().all().then(...).catch(...);
 ```
 
 #### Actions
@@ -271,37 +266,37 @@ gf.get('checklist_items').all().then(...).catch(...);
 ##### Get all actions with ID of **$ID**:
 
 ```javascript
-gf.get('actions').withID($ID).then(...).catch(...);
+gf.get().actions().withID($ID).then(...).catch(...);
 ```
 
-##### Get all actions within some other type of **$TYPE**:
+##### Get all actions within some other type:
 
 ```javascript
-gf.get('actions').within($TYPE) ...
+gf.get().actions().within() ...
 ```
 
 ###### Get all actions within circles with ID of **$ID**:
 
 ```javascript
-gf.get('actions').within('circles').withID($ID).then(...).catch(...);
+gf.get().actions().within().circles().withID($ID).then(...).catch(...);
 ```
 
 ###### Get all actions within people with ID of **$ID**:
 
 ```javascript
-gf.get('actions').within('people').withID($ID).then(...).catch(...);
+gf.get().actions().within().people().withID($ID).then(...).catch(...);
 ```
 
 ##### Get all actions created since date of **$DATE**:
 
 ```javascript
-gf.get('actions').created_since($DATE).then(...).catch(...);
+gf.get().actions().created_since($DATE).then(...).catch(...);
 ```
 
 ##### Get all actions:
 
 ```javascript
-gf.get('actions').all().then(...).catch(...);
+gf.get().actions().all().then(...).catch(...);
 ```
 
 #### Triggers
@@ -309,35 +304,35 @@ gf.get('actions').all().then(...).catch(...);
 ##### Get all triggers with ID of **$ID**:
 
 ```javascript
-gf.get('triggers').withID($ID).then(...).catch(...);
+gf.get().triggers().withID($ID).then(...).catch(...);
 ```
 
-##### Get all triggers within some other type of **$TYPE**:
+##### Get all triggers within some other type:
 
 ```javascript
-gf.get('triggers').within($TYPE) ...
+gf.get().triggers().within() ...
 ```
 
 ###### Get all triggers within circles with ID of **$ID**:
 
 ```javascript
-gf.get('triggers').within('circles').withID($ID).then(...).catch(...);
+gf.get().triggers().within().circles().withID($ID).then(...).catch(...);
 ```
 
 ###### Get all triggers within people with ID of **$ID**:
 
 ```javascript
-gf.get('triggers').within('people').withID($ID).then(...).catch(...);
+gf.get().triggers().within().people().withID($ID).then(...).catch(...);
 ```
 
 ##### Get all triggers created since date of **$DATE**:
 
 ```javascript
-gf.get('triggers').created_since($DATE).then(...).catch(...);
+gf.get().triggers().created_since($DATE).then(...).catch(...);
 ```
 
 ##### Get all triggers:
 
 ```javascript
-gf.get('triggers').all().then(...).catch(...);
+gf.get().triggers().all().then(...).catch(...);
 ```
