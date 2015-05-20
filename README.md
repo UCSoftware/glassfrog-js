@@ -35,7 +35,7 @@ The complete form of a function might look like:
 ```javascript
 gf.find('circles').withID($ID).do(function (response) {
 		console.log(JSON.parse(response[1]));
-	}, error (e) {
+	}, function (e) {
 		console.log("There was an " + e);
 });
 ```
