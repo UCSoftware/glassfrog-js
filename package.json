@@ -2,7 +2,7 @@
   "name": "glassfrog-js",
   "version": "0.2.2",
   "description": "Node.js wrapper for the GlassFrog API.",
-  "main": "index.js",
+  "main": "./lib/glassfrog.js",
   "directories": {
     "test": "test"
   },
