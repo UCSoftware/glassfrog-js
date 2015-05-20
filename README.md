@@ -24,7 +24,9 @@ var gf = GlassFrog($YOUR_API_KEY);
 
 All complete functions return an object with the *do(callback, error)* method.
 
-*callback* is a function with the form *callback(response)* where **response** is an array with **response[0]** being the entire response and **response[1]** being the body of the response.
+*callback* is a function with the form *callback(response)* where **response** is an array with:
+* **response[0]** being the entire response
+* **response[1]** being the body of the response.
 
 *error* is a function with the form *error(e)* where **e** is an error.
 
