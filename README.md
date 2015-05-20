@@ -20,7 +20,7 @@ var GlassFrog = require('glassfrog');
 var gf = GlassFrog($YOUR_API_KEY);
 ```
 
-## Functions (assuming you imported as above)
+## Functions
 
 All complete functions return an object with the *do(callback, error)* method.
 
