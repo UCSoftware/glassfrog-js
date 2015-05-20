@@ -48,7 +48,7 @@ These functions pull data from GlassFrog with GET HTTP requests.
 
 ###### General form:
 
-All GET functions begin with the *find* function and specify a **$TYPE**
+All GET functions begin with the *find* function and specify a **$TYPE**.
 
 ```javascript
 gf.find($TYPE) ...
