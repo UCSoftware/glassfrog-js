@@ -118,11 +118,11 @@ gf.find('people').within($TYPE) ...
 gf.find('people').within('circles').withID($ID).do(...);
 ```
 
-###### **withName** functions are currently limited to these 4 roles.
-
 ###### Get all people within roles with name of **'secretary'**:
 
+```javascript
 gf.find('people').within('roles').withName('secretary').do(...);
+```
 
 ###### Get all people within roles with name of **'rep link'** or **'rep_link'**:
 
