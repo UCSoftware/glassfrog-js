@@ -1,4 +1,4 @@
-# GlassFrog.js
+# GlassFrog.js Version: 0.2.0
 
 A Node.js wrapper for the GlassFrog API.
 
