@@ -52,7 +52,7 @@ All GET functions begin with the *find* function and specify a **$TYPE**
 gf.find($TYPE) ...
 ```
 
-#### Circles (Teams)
+#### Circles
 
 ##### Get all circles with an ID of **$ID**:
 
