@@ -290,7 +290,7 @@ gf.get().actions().within().people().withID($ID).then(...).catch(...);
 ##### Get all actions created since date of **$DATE**:
 
 ```javascript
-gf.get().actions().created_since($DATE).then(...).catch(...);
+gf.get().actions().createdSince($DATE).then(...).catch(...);
 ```
 
 ##### Get all actions:
@@ -328,7 +328,7 @@ gf.get().triggers().within().people().withID($ID).then(...).catch(...);
 ##### Get all triggers created since date of **$DATE**:
 
 ```javascript
-gf.get().triggers().created_since($DATE).then(...).catch(...);
+gf.get().triggers().createdSince($DATE).then(...).catch(...);
 ```
 
 ##### Get all triggers:
