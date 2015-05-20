@@ -22,6 +22,22 @@ var gf = GlassFrog($YOUR_API_KEY);
 
 ## Functions (assuming you imported as above)
 
+All complete functions return an object with the *do(callback, error)* method.
+
+*callback* is a function with the form *callback(response)* where **response** is an array with **response[0]** being the entire response and **response[1]** being the body of the response.
+
+*error* is a function with the form *error(e)* where **e** is an error.
+
+The complete form of a function might look like:
+
+```javascript
+gf.find('circles').withID($ID).do(function (response) {
+	console.log(JSON.parse(response[1]));
+}, error (e) {
+	console.log("There was an " + e);
+});
+```
+
 ### GET
 
 These functions pull data from GlassFrog with GET HTTP requests.
@@ -36,6 +52,8 @@ gf.find($TYPE);
 
 #### Circles (Teams)
 
+Note: Returns a set of functions:
+
 ```javascript
 gf.find('circles');
 ```
@@ -49,10 +67,12 @@ gf.find('circles').withID($ID);
 ##### Get all circles:
 
 ```javascript
-gf.find('circles').all()
+gf.find('circles').all();
 ```
 
 #### Roles
+
+Note: Returns a set of functions.
 
 ```javascript
 gf.find('roles');
@@ -70,13 +90,13 @@ gf.find('roles').withID($ID);
 gf.find('roles').within($TYPE);
 ```
 
-##### Get all roles within circles with ID of **$ID**:
+###### Get all roles within circles with ID of **$ID**:
 
 ```javascript
 gf.find('roles').within('circles').withID($ID);
 ```
 
-##### Get all roles within people with ID of **$ID**:
+###### Get all roles within people with ID of **$ID**:
 
 ```javascript
 gf.find('roles').within('people').withID($ID);
@@ -89,6 +109,8 @@ gf.find('roles').all();
 ```
 
 #### People
+
+Note: Returns a set of functons.
 
 ```javascript
 gf.find('people');
@@ -106,19 +128,19 @@ gf.find('people').withID($ID);
 gf.find('people').within($TYPE);
 ```
 
-##### Get all people within circles with ID of **$ID**:
+###### Get all people within circles with ID of **$ID**:
 
 ```javascript
 gf.find('people').within('circles').withID($ID);
 ```
 
-##### **withName** functions are currently limited to these 4 roles.
+###### **withName** functions are currently limited to these 4 roles.
 
-##### Get all people within roles with name of **'secretary'**:
+###### Get all people within roles with name of **'secretary'**:
 
 gf.find('people').within('roles').withName('secretary');
 
-##### Get all people within roles with name of **'rep link'** or **'rep_link'**:
+###### Get all people within roles with name of **'rep link'** or **'rep_link'**:
 
 ```javascript
 gf.find('people').within('roles').withName('rep_link');
@@ -127,7 +149,7 @@ gf.find('people').within('roles').withName('rep_link');
 gf.find('people').within('roles').withName('rep link');
 ```
 
-##### Get all people within roles with name of **'lead link'** or **'lead_link'**:
+###### Get all people within roles with name of **'lead link'** or **'lead_link'**:
 
 ```javascript
 gf.find('people').within('roles').withName('lead_link');
@@ -136,7 +158,7 @@ gf.find('people').within('roles').withName('lead_link');
 gf.find('people').within('roles').withName('lead link');
 ```
 
-##### Get all people within roles with name of **'facilitator'**:
+###### Get all people within roles with name of **'facilitator'**:
 
 ```javascript
 gf.find('people').within('roles').withName('facilitator');
@@ -166,7 +188,7 @@ gf.find('projects').withID($ID);
 gf.find('projects').within($TYPE);
 ```
 
-##### Get all projects within circles with ID of **$ID**:
+###### Get all projects within circles with ID of **$ID**:
 
 ```javascript
 gf.find('projects').within('circles').withID($ID);
@@ -196,13 +218,13 @@ gf.find('metrics').withID($ID);
 gf.find('metrics').within($TYPE);
 ```
 
-##### Get all metrics within circles with ID of **$ID** including global metrics:
+###### Get all metrics within circles with ID of **$ID** including global metrics:
 
 ```javascript
 gf.find('metrics').within('circles').withID($ID).withGlobals();
 ```
 
-##### Get all metrics within circles with ID of **$ID** **NOT** including global metrics:
+###### Get all metrics within circles with ID of **$ID** **NOT** including global metrics:
 
 ```javascript
 gf.find('metrics').within('circles').withID($ID).withoutGlobals();
@@ -242,13 +264,13 @@ gf.find('checklist_items').withID($ID);
 gf.find('checklist_items').within($TYPE);
 ```
 
-##### Get all checklist items within circles with ID of **$ID** including global checklist items:
+###### Get all checklist items within circles with ID of **$ID** including global checklist items:
 
 ```javascript
 gf.find('checklist_items').within('circles').withID($ID).withGlobals();
 ```
 
-##### Get all checklist items within circles with ID of **$ID** **NOT** including global checklist items:
+###### Get all checklist items within circles with ID of **$ID** **NOT** including global checklist items:
 
 ```javascript
 gf.find('checklist_items').within('circles').withID($ID).withoutGlobals();
