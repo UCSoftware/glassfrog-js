@@ -59,13 +59,13 @@ gf.find($TYPE) ...
 ##### Get all circles with an ID of **$ID**:
 
 ```javascript
-gf.find('circles').withID($ID).do(...);
+gf.find('circles').withID($ID).then(...).catch(...);
 ```
 
 ##### Get all circles:
 
 ```javascript
-gf.find('circles').all().do(...);
+gf.find('circles').all().then(...).catch(...);
 ```
 
 #### Roles
@@ -73,7 +73,7 @@ gf.find('circles').all().do(...);
 ##### Get all roles with an ID of **$ID**:
 
 ```javascript
-gf.find('roles').withID($ID).do(...);
+gf.find('roles').withID($ID).then(...).catch(...);
 ```
 
 ##### Get all roles within some other type of **$TYPE**:
@@ -85,19 +85,19 @@ gf.find('roles').within($TYPE) ...
 ###### Get all roles within circles with ID of **$ID**:
 
 ```javascript
-gf.find('roles').within('circles').withID($ID).do(...);
+gf.find('roles').within('circles').withID($ID).then(...).catch(...);
 ```
 
 ###### Get all roles within people with ID of **$ID**:
 
 ```javascript
-gf.find('roles').within('people').withID($ID).do(...);
+gf.find('roles').within('people').withID($ID).then(...).catch(...);
 ```
 
 ##### Get all roles:
 
 ```javascript
-gf.find('roles').all().do(...);
+gf.find('roles').all().then(...).catch(...);
 ```
 
 #### People
@@ -105,7 +105,7 @@ gf.find('roles').all().do(...);
 ##### Get all people with ID of **$ID**:
 
 ```javascript
-gf.find('people').withID($ID).do(...);
+gf.find('people').withID($ID).then(...).catch(...);
 ```
 
 ##### Get all people within some other type of **$TYPE**:
@@ -117,43 +117,43 @@ gf.find('people').within($TYPE) ...
 ###### Get all people within circles with ID of **$ID**:
 
 ```javascript
-gf.find('people').within('circles').withID($ID).do(...);
+gf.find('people').within('circles').withID($ID).then(...).catch(...);
 ```
 
 ###### Get all people within roles with name of **'secretary'**:
 
 ```javascript
-gf.find('people').within('roles').withName('secretary').do(...);
+gf.find('people').within('roles').withName('secretary').then(...).catch(...);
 ```
 
 ###### Get all people within roles with name of **'rep link'** or **'rep_link'**:
 
 ```javascript
-gf.find('people').within('roles').withName('rep_link').do(...);
+gf.find('people').within('roles').withName('rep_link').then(...).catch(...);
 ```
 ```javascript
-gf.find('people').within('roles').withName('rep link').do(...);
+gf.find('people').within('roles').withName('rep link').then(...).catch(...);
 ```
 
 ###### Get all people within roles with name of **'lead link'** or **'lead_link'**:
 
 ```javascript
-gf.find('people').within('roles').withName('lead_link').do(...);
+gf.find('people').within('roles').withName('lead_link').then(...).catch(...);
 ```
 ```javascript
-gf.find('people').within('roles').withName('lead link').do(...);
+gf.find('people').within('roles').withName('lead link').then(...).catch(...);
 ```
 
 ###### Get all people within roles with name of **'facilitator'**:
 
 ```javascript
-gf.find('people').within('roles').withName('facilitator').do(...);
+gf.find('people').within('roles').withName('facilitator').then(...).catch(...);
 ```
 
 ##### Get all people:
 
 ```javascript
-gf.find('people').all().do(...);
+gf.find('people').all().then(...).catch(...);
 ```
 
 #### Projects
@@ -161,7 +161,7 @@ gf.find('people').all().do(...);
 ##### Get all projects with ID of **$ID**:
 
 ```javascript
-gf.find('projects').withID($ID).do(...);
+gf.find('projects').withID($ID).then(...).catch(...);
 ```
 
 ##### Get all projects within some other type of **$TYPE**:
@@ -173,13 +173,13 @@ gf.find('projects').within($TYPE) ...
 ###### Get all projects within circles with ID of **$ID**:
 
 ```javascript
-gf.find('projects').within('circles').withID($ID).do(...);
+gf.find('projects').within('circles').withID($ID).then(...).catch(...);
 ```
 
 ##### Get all projects:
 
 ```javascript
-gf.find('projects').all().do(...);
+gf.find('projects').all().then(...).catch(...);
 ```
 
 #### Metrics
@@ -187,7 +187,7 @@ gf.find('projects').all().do(...);
 ##### Get all metrics with ID of **$ID**:
 
 ```javascript
-gf.find('metrics').withID($ID).do(...);
+gf.find('metrics').withID($ID).then(...).catch(...);
 ```
 
 ##### Get all metrics within some other type of **$TYPE**:
@@ -199,41 +199,41 @@ gf.find('metrics').within($TYPE) ...
 ###### Get all metrics within circles with ID of **$ID** including global metrics:
 
 ```javascript
-gf.find('metrics').within('circles').withID($ID).withGlobals().do(...);
+gf.find('metrics').within('circles').withID($ID).withGlobals().then(...).catch(...);
 ```
 
 ###### Get all metrics within circles with ID of **$ID** **NOT** including global metrics:
 
 ```javascript
-gf.find('metrics').within('circles').withID($ID).withoutGlobals().do(...);
+gf.find('metrics').within('circles').withID($ID).withoutGlobals().then(...).catch(...);
 ```
 
 ##### Get all global metrics:
 
 ```javascript
-gf.find('metrics').globals().do(...);
+gf.find('metrics').globals().then(...).catch(...);
 ```
 
 ##### Get all metrics:
 
 ```javascript
-gf.find('metrics').all().do(...);
+gf.find('metrics').all().then(...).catch(...);
 ```
 
 #### Checklist Items:
 ##### Can be specified as either:
 ```javascript
-gf.find('checklist_items').do(...);
+gf.find('checklist_items').then(...).catch(...);
 ```
 ##### Or:
 ```javascript
-gf.find('checklist items').do(...);
+gf.find('checklist items').then(...).catch(...);
 ```
 
 ##### Get all checklist items with ID of **$ID**:
 
 ```javascript
-gf.find('checklist_items').withID($ID).do(...);
+gf.find('checklist_items').withID($ID).then(...).catch(...);
 ```
 
 ##### Get all checklist items with some other type of **$TYPE**:
@@ -245,25 +245,25 @@ gf.find('checklist_items').within($TYPE) ...
 ###### Get all checklist items within circles with ID of **$ID** including global checklist items:
 
 ```javascript
-gf.find('checklist_items').within('circles').withID($ID).withGlobals().do(...);
+gf.find('checklist_items').within('circles').withID($ID).withGlobals().then(...).catch(...);
 ```
 
 ###### Get all checklist items within circles with ID of **$ID** **NOT** including global checklist items:
 
 ```javascript
-gf.find('checklist_items').within('circles').withID($ID).withoutGlobals().do(...);
+gf.find('checklist_items').within('circles').withID($ID).withoutGlobals().then(...).catch(...);
 ```
 
 ##### Get all global checklist items:
 
 ```javascript
-gf.find('checklist_items').globals().do(...);
+gf.find('checklist_items').globals().then(...).catch(...);
 ```
 
 ##### Get all checklist items:
 
 ```javascript
-gf.find('checklist_items').all().do(...);
+gf.find('checklist_items').all().then(...).catch(...);
 ```
 
 #### Actions
@@ -271,7 +271,7 @@ gf.find('checklist_items').all().do(...);
 ##### Get all actions with ID of **$ID**:
 
 ```javascript
-gf.find('actions').withID($ID).do(...);
+gf.find('actions').withID($ID).then(...).catch(...);
 ```
 
 ##### Get all actions within some other type of **$TYPE**:
@@ -283,25 +283,25 @@ gf.find('actions').within($TYPE) ...
 ###### Get all actions within circles with ID of **$ID**:
 
 ```javascript
-gf.find('actions').within('circles').withID($ID).do(...);
+gf.find('actions').within('circles').withID($ID).then(...).catch(...);
 ```
 
 ###### Get all actions within people with ID of **$ID**:
 
 ```javascript
-gf.find('actions').within('people').withID($ID).do(...);
+gf.find('actions').within('people').withID($ID).then(...).catch(...);
 ```
 
 ##### Get all actions created since date of **$DATE**:
 
 ```javascript
-gf.find('actions').created_since($DATE).do(...);
+gf.find('actions').created_since($DATE).then(...).catch(...);
 ```
 
 ##### Get all actions:
 
 ```javascript
-gf.find('actions').all().do(...);
+gf.find('actions').all().then(...).catch(...);
 ```
 
 #### Triggers
@@ -309,7 +309,7 @@ gf.find('actions').all().do(...);
 ##### Get all triggers with ID of **$ID**:
 
 ```javascript
-gf.find('triggers').withID($ID).do(...);
+gf.find('triggers').withID($ID).then(...).catch(...);
 ```
 
 ##### Get all triggers within some other type of **$TYPE**:
@@ -321,23 +321,23 @@ gf.find('triggers').within($TYPE) ...
 ###### Get all triggers within circles with ID of **$ID**:
 
 ```javascript
-gf.find('triggers').within('circles').withID($ID).do(...);
+gf.find('triggers').within('circles').withID($ID).then(...).catch(...);
 ```
 
 ###### Get all triggers within people with ID of **$ID**:
 
 ```javascript
-gf.find('triggers').within('people').withID($ID).do(...);
+gf.find('triggers').within('people').withID($ID).then(...).catch(...);
 ```
 
 ##### Get all triggers created since date of **$DATE**:
 
 ```javascript
-gf.find('triggers').created_since($DATE).do(...);
+gf.find('triggers').created_since($DATE).then(...).catch(...);
 ```
 
 ##### Get all triggers:
 
 ```javascript
-gf.find('triggers').all().do(...);
+gf.find('triggers').all().then(...).catch(...);
 ```
