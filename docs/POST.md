@@ -1,6 +1,6 @@
 ### POST
 
-These functions push data to GlassFrog with POST HTTP requests.
+These functions push data to GlassFrog and create new objects with POST HTTP requests.
 
 They return a JSON with the copy of the object that was created in the body.
 
