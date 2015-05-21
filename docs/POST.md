@@ -24,7 +24,7 @@ Create a new person in GlassFrog with the attributes of **$ATTRIBUTES**:
 gf.post().circles($ATTRIBUTES).then(...).catch(...);
 ```
 
-### $ATTRIBUTES should take the form of:
+###### $ATTRIBUTES should take the form of:
 
 ```javascript
 { 
@@ -43,7 +43,7 @@ Creates a new project in GlassFrog with the attributes of **$ATTRIBUTES**
 gf.post().projects($ATTRIBUTES).then(...).catch(...);
 ```
 
-### $ATTRIBUTES should take the form of:
+###### $ATTRIBUTES should take the form of:
 
 ```javascript
 { 
@@ -61,7 +61,7 @@ Create a new metric in GlassFrog with the attributes of **$ATTRIBUTES**:
 gf.post().metrics($ATTRIBUTES).then(...).catch(...);
 ```
 
-### $ATTRIBUTES should take the form of:
+###### $ATTRIBUTES should take the form of:
 
 ```javascript
 {
@@ -80,7 +80,7 @@ Create a new checklist item in GlassFrog with the attributes of **$ATTRIBUTES**:
 gf.post().checklistItems($ATTRIBUTES).then(...).catch(...);
 ```
 
-### $ATTRIBUTES should take the form of:
+###### $ATTRIBUTES should take the form of:
 
 ```javascript
 {
