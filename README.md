@@ -2,7 +2,7 @@
 
 A Node.js wrapper for the GlassFrog API.
 
-Currently only capable of pulling data from GlassFrog.
+Currently only capable of pulling data from and pushing new objects to GlassFrog.
 
 ## Importing
 
