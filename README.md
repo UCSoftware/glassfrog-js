@@ -8,13 +8,13 @@ Currently only capable of pulling data from GlassFrog.
 
 To import this module:
 
-1. Require the module.
+* Require the module.
 
 ```javascript
 var GlassFrog = require('glassfrog');
 ```
 
-2. Pass your API Key to the function that is imported.
+* Pass your API Key to the function that is imported.
 
 ```javascript
 var gf = GlassFrog($YOUR_API_KEY);
