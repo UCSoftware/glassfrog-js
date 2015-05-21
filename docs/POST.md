@@ -1,4 +1,4 @@
-### POST
+# POST
 
 These functions push data to GlassFrog and create new objects with POST HTTP requests.
 
