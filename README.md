@@ -40,10 +40,10 @@ gf.get().circles().withID($ID).then(function (response) {
 });
 ```
 
-### [GET](/docs/GET.md)
+## [GET](/docs/GET.md)
 
 These functions pull data from GlassFrog with GET HTTP requests.
 
-### [POST](docs/POST.md)
+## [POST](docs/POST.md)
 
 These function push data to GlassFrog and create new objects with POST HTTP requests.
