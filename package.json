@@ -21,7 +21,8 @@
   "homepage": "https://github.com/UCSoftware/glassfrog-js",
   "dependencies": {
     "bluebird": "^2.9.25",
-    "request": "^2.55.0"
+    "request": "^2.55.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "mocha": "^2.2.5",
