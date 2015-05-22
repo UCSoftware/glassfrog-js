@@ -18,6 +18,16 @@ var GlassFrog = require('glassfrog');
 var gf = GlassFrog($YOUR_API_KEY);
 ```
 
+###### There is also an optional *caching* flag which will store all fetched data locally in a cache. By default this is disabled.
+
+To turn it on, pass the API Key along with a true *caching* flag:
+
+```javascript
+var gf = GlassFrog($YOUR_API_KEY, true);
+```
+
+###### This only functions with GET methods.
+
 ## Functions
 
 All complete query functions return an object with the *then(callback)* method.

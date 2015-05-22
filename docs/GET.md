@@ -10,6 +10,16 @@ All GET functions begin with the *get* function.
 gf.get() ...
 ```
 
+####### Optionally, if *caching* has been turned on, you may check the cache for a value before doing a fetch.
+
+To do this, pass a true *cache* flag to the get function:
+
+```javascript
+gf.get(true) ...
+```
+
+If *caching* is turned on all fetches will store a local copy.
+
 ## Circles
 
 Get all circles with an ID of **$ID**:
