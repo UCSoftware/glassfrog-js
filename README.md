@@ -56,7 +56,7 @@ gf.get().circles().withID($ID).then(function (response) {
 ###### For example:
 
 ```javascript
-gf.get().circles().withID($ID).spread(function (response, bodu) {
+gf.get().circles().withID($ID).spread(function (response, body) {
 	console.log(JSON.parse(body));
 }).catch(function(error) {
 	console.log("There was an " + error);
