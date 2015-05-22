@@ -496,6 +496,6 @@ module.exports = function(key) {
 		testMethods(this, gf, 0, true);
 	});
 	describe('Poll the Cache GET', function () {
-		testMethods(this, gf, 1000, true);
+		testMethods(this, gf, 500, true);
 	});
 }
