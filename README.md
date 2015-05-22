@@ -34,9 +34,19 @@ The complete form of a function might look like:
 
 ```javascript
 gf.get().circles().withID($ID).then(function (response) {
-		console.log(JSON.parse(response[1]));
-	}).catch(function (error) {
-		console.log("There was an " + error);
+	console.log(JSON.parse(response[1]));
+}).catch(function (error) {
+	console.log("There was an " + error);
+});
+```
+
+###### Alternatively you can call the *spread(callback)* function to make the parameters more readable. For example:
+
+```javascript
+gf.get().circles().withID($ID).spread(function (response, bodu) {
+	console.log(JSON.parse(body));
+}).catch(function(error) {
+	console.log("There was an " + error);
 });
 ```
 
