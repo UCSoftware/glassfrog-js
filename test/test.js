@@ -1,7 +1,3 @@
-var assert = require('assert'),
-		should = require('should'),
- GlassFrog = require('../lib/glassfrog');
-
 // SET API KEY
 var API_KEY = '';
 
