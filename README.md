@@ -27,7 +27,7 @@ To turn it on, pass the API Key along with a true *caching* flag:
 var gf = GlassFrog($YOUR_API_KEY, true);
 ```
 
-###### This only functions with GET methods.
+###### This only changes the behavior of GET methods.
 
 ## Functions
 

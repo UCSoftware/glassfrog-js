@@ -20,6 +20,8 @@ gf.get(true) ...
 
 If *caching* is turned on all fetches will store a local copy.
 
+###### If *caching* is NOT turned on, and a true *cache* flag is pass, an error will be thrown.
+
 ## Circles
 
 Get all circles with an ID of **$ID**:
