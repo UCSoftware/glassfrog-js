@@ -491,6 +491,20 @@ module.exports = function(key) {
 	describe('Without Caching GET', function () {
 		testMethods(this, gf, 0, false);
 	});
+	describe('Try to Cache without Caching GET', function () {
+		this.timeout(0);
+		describe('circles', function() {
+			describe('all', function() {
+				it('Should throw an error', function(done) {
+					gf.get(true).circles().all().spread(function (response, body) {
+						throw new Error('No Error ' + response.headers.status);
+					}).catch(function (error) {
+						if (error) done();
+					});
+				});
+			});
+		});
+	});
 	gf = GlassFrog(key, true)
 	describe('Build the Cache GET', function () {
 		testMethods(this, gf, 0, true);
