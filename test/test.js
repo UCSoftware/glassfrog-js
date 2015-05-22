@@ -1,7 +1,8 @@
 var assert =  require('assert'),
-should = require('should'),
-GlassFrog = require('../lib/glassfrog'),
-gf = GlassFrog('');
+		should = require('should'),
+ GlassFrog = require('../lib/glassfrog'),
+				// MUST SET API KEY FOR TEST
+				gf = GlassFrog('');
 
 var randomID = Math.floor(Math.random() * 10000),
 	role_names = ['secretary', 'rep link', 'rep_link', 'lead link', 'lead_link', 'facilitator'];
