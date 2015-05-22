@@ -40,7 +40,9 @@ gf.get().circles().withID($ID).then(function (response) {
 });
 ```
 
-###### Alternatively you can call the *spread(callback)* function to make the parameters more readable. For example:
+###### Alternatively you can call the *spread(callback)* function to make the parameters more readable. 
+
+###### For example:
 
 ```javascript
 gf.get().circles().withID($ID).spread(function (response, bodu) {
