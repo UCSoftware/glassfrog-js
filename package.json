@@ -3,11 +3,8 @@
   "version": "0.4.1",
   "description": "Node.js wrapper for the GlassFrog API.",
   "main": "./lib/glassfrog.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha tests/*.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +19,8 @@
   "dependencies": {
     "bluebird": "^2.9.25",
     "request": "^2.55.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.0.3"
   },
   "devDependencies": {
     "mocha": "^2.2.5",
