@@ -6,7 +6,7 @@ var assert = require('assert'),
 // These will be the new objects created on GlassFrog.
 var PERSON = {
       "name": "Test Person",
-      "email": "test.person." + randomID = Math.floor(Math.random() * 999999) + "@quirkyinc.com"
+      "email": "test.person." + Math.floor(Math.random() * 999999) + "@test.com"
     },
     PROJECT = {
       "description": "Test Project",
@@ -29,15 +29,6 @@ var PERSON = {
 // Set these to the names of the circle and role created on the GlassFrog web UI.
 var TEST_CIRCLE_NAME = 'API Sandbox',
       TEST_ROLE_NAME = 'Sandperson';
-
-module.exports = {
-  "PERSON": PERSON,
-  "PROJECT": PROJECT,
-  "METRIC": METRIC,
-  "CHECKLIST_ITEM": CHECKLIST_ITEM,
-  "TEST_CIRCLE_NAME": TEST_CIRCLE_NAME,
-  "TEST_ROLE_NAME": TEST_ROLE_NAME
-};
 
 var randomID = Math.floor(Math.random() * 10000),
   role_names = ['secretary', 'rep link', 'rep_link', 'lead link', 'lead_link', 'facilitator'];
@@ -75,6 +66,7 @@ describe('POST', function() {
     it('Should return 200 OK and the object', function(done) {
       gf.post().people(PERSON).spread(function (response, data) {
         if (response.headers.status === '200 OK') {
+          PERSON.id = data.people[0].id;
           done();
         } else if (response.headers.status === '403 Forbidden') {
           done(new Error('Your API KEY must belong to an admin.'));
@@ -93,6 +85,7 @@ describe('POST', function() {
         PROJECT.role_id = testRoleID;
         gf.post().projects(PROJECT).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
+            PROJECT.id = data.projects[0].id;
             done();
           } else if (response.headers.status === '403 Forbidden') {
             done(new Error('Your API KEY must belong to an admin.'));
@@ -114,6 +107,7 @@ describe('POST', function() {
         METRIC.role_id = testRoleID;
         gf.post().metrics(METRIC).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
+            METRIC.id = data.metrics[0].id;
             done();
           } else if (response.headers.status === '403 Forbidden') {
             done(new Error('Your API KEY must belong to an admin.'));
@@ -128,13 +122,14 @@ describe('POST', function() {
       }
     });
   });
-  describe('checklist', function() {
+  describe('checklist items', function() {
     it('Should return 200 OK and the object', function(done) {
       if (testRoleID && testCircleID) {
         CHECKLIST_ITEM.circle_id = testCircleID,
         CHECKLIST_ITEM.role_id = testRoleID;
         gf.post().checklistItems(CHECKLIST_ITEM).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
+            CHECKLIST_ITEM.id = data.checklist_items[0].id;
             done();
           } else if (response.headers.status === '403 Forbidden') {
             done(new Error('Your API KEY must belong to an admin.'));
@@ -150,3 +145,13 @@ describe('POST', function() {
     });
   });
 });
+
+// Export values for use with PATCH and DELETE tests.
+module.exports = {
+  "PERSON": PERSON,
+  "PROJECT": PROJECT,
+  "METRIC": METRIC,
+  "CHECKLIST_ITEM": CHECKLIST_ITEM,
+  "TEST_CIRCLE_NAME": TEST_CIRCLE_NAME,
+  "TEST_ROLE_NAME": TEST_ROLE_NAME
+};
