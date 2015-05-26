@@ -30,6 +30,15 @@ var PERSON = {
 var TEST_CIRCLE_NAME = 'API Sandbox',
       TEST_ROLE_NAME = 'Sandperson';
 
+module.exports = {
+  "PERSON": PERSON,
+  "PROJECT": PROJECT,
+  "METRIC": METRIC,
+  "CHECKLIST_ITEM": CHECKLIST_ITEM,
+  "TEST_CIRCLE_NAME": TEST_CIRCLE_NAME,
+  "TEST_ROLE_NAME": TEST_ROLE_NAME
+};
+
 var randomID = Math.floor(Math.random() * 10000),
   role_names = ['secretary', 'rep link', 'rep_link', 'lead link', 'lead_link', 'facilitator'];
 
@@ -41,7 +50,7 @@ describe('POST', function() {
   // Currently unused, will be fetched when the person is created if needed.
       testPersonID;
   // Fetch test circle ID created on the GlassFrog UI.
-  it('Should fetch test circle', function(done) {
+  it('Should fetch test circle id', function(done) {
     gf.get().circles().all().spread(function (response, data) {
       data.circles.forEach(function (circle) {
         if (circle.name === TEST_CIRCLE_NAME) {
@@ -52,7 +61,7 @@ describe('POST', function() {
     });
   });
   // Fetch test role ID created on the GlassFrog UI.
-  it('Should fetch test role', function(done) {
+  it('Should fetch test role id', function(done) {
     gf.get().roles().all().spread(function (response, data) {
       data.roles.forEach(function (role) {
         if (role.name === TEST_ROLE_NAME) {
