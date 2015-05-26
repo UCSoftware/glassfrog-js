@@ -15,7 +15,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -28,7 +28,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -43,7 +43,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -58,7 +58,7 @@ function testMethods(context, gf, timeout, cache) {
               if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
                 done();
               } else {
-                throw new Error('Not Ok. ' + response.headers.status);
+                done(new Error('Not Ok. ' + response.headers.status));
               }
             }).catch(function (error) {
               if (error) throw error;
@@ -73,7 +73,7 @@ function testMethods(context, gf, timeout, cache) {
               if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
                 done();
               } else {
-                throw new Error('Not Ok. ' + response.headers.status);
+                done(new Error('Not Ok. ' + response.headers.status));
               }
             }).catch(function (error) {
               if (error) throw error;
@@ -88,7 +88,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -103,7 +103,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -118,7 +118,7 @@ function testMethods(context, gf, timeout, cache) {
               if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
                 done();
               } else {
-                throw new Error('Not Ok. ' + response.headers.status);
+                done(new Error('Not Ok. ' + response.headers.status));
               }
             }).catch(function (error) {
               if (error) throw error;
@@ -135,7 +135,7 @@ function testMethods(context, gf, timeout, cache) {
                   if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
                     done();
                   } else {
-                    throw new Error('Not Ok. ' + response.headers.status);
+                    done(new Error('Not Ok. ' + response.headers.status));
                   }
                 }).catch(function (error) {
                   if (error) throw error;
@@ -152,7 +152,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -167,7 +167,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -182,7 +182,7 @@ function testMethods(context, gf, timeout, cache) {
               if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
                 done();
               } else {
-                throw new Error('Not Ok. ' + response.headers.status);
+                done(new Error('Not Ok. ' + response.headers.status));
               }
             }).catch(function (error) {
               if (error) throw error;
@@ -199,7 +199,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -215,7 +215,7 @@ function testMethods(context, gf, timeout, cache) {
                 if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
                   done();
                 } else {
-                  throw new Error('Not Ok. ' + response.headers.status);
+                  done(new Error('Not Ok. ' + response.headers.status));
                 }
               }).catch(function (error) {
                 if (error) throw error;
@@ -228,7 +228,7 @@ function testMethods(context, gf, timeout, cache) {
                 if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
                   done();
                 } else {
-                  throw new Error('Not Ok. ' + response.headers.status);
+                  done(new Error('Not Ok. ' + response.headers.status));
                 }
               }).catch(function (error) {
                 if (error) throw error;
@@ -244,7 +244,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -257,7 +257,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -272,7 +272,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -289,7 +289,7 @@ function testMethods(context, gf, timeout, cache) {
                   response.headers.status === '404 Not Found') {
                   done();
                 } else {
-                  throw new Error('Not Ok. ' + response.headers.status);
+                  done(new Error('Not Ok. ' + response.headers.status));
                 }
               }).catch(function (error) {
                 if (error) throw error;
@@ -302,7 +302,7 @@ function testMethods(context, gf, timeout, cache) {
                 if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
                   done();
                 } else {
-                  throw new Error('Not Ok. ' + response.headers.status);
+                  done(new Error('Not Ok. ' + response.headers.status));
                 }
               }).catch(function (error) {
                 if (error) throw error;
@@ -318,7 +318,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -331,7 +331,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -346,7 +346,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -361,7 +361,7 @@ function testMethods(context, gf, timeout, cache) {
               if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
                 done();
               } else {
-                throw new Error('Not Ok. ' + response.headers.status);
+                done(new Error('Not Ok. ' + response.headers.status));
               }
             }).catch(function (error) {
               if (error) throw error;
@@ -376,7 +376,7 @@ function testMethods(context, gf, timeout, cache) {
               if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
                 done();
               } else {
-                throw new Error('Not Ok. ' + response.headers.status);
+                done(new Error('Not Ok. ' + response.headers.status));
               }
             }).catch(function (error) {
               if (error) throw error;
@@ -391,7 +391,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -404,7 +404,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -419,7 +419,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -434,7 +434,7 @@ function testMethods(context, gf, timeout, cache) {
               if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
                 done();
               } else {
-                throw new Error('Not Ok. ' + response.headers.status);
+                done(new Error('Not Ok. ' + response.headers.status));
               }
             }).catch(function (error) {
               if (error) throw error;
@@ -449,7 +449,7 @@ function testMethods(context, gf, timeout, cache) {
               if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
                 done();
               } else {
-                throw new Error('(Not Ok. ' + response.headers.status);
+                done( new Error('(Not Ok. ' + response.headers.status));
               }
             }).catch(function (error) {
               if (error) throw error;
@@ -464,7 +464,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -477,7 +477,7 @@ function testMethods(context, gf, timeout, cache) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -497,7 +497,7 @@ describe('Try to Cache without Caching GET', function () {
     describe('all', function() {
       it('Should throw an error', function(done) {
         gf.get(true).circles().all().spread(function (response, data) {
-          throw new Error('No Error ' + response.headers.status);
+          done( new Error('No Error ' + response.headers.status));
         }).catch(function (error) {
           if (error) done();
         });
