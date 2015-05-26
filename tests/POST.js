@@ -61,8 +61,10 @@ describe('POST', function() {
       gf.post().people(PERSON).spread(function (response, data) {
         if (response.headers.status === '200 OK') {
           done();
+        } else if (response.headers.status = '403 Forbidden') {
+            done(new Error('Your API KEY must belong to an admin.'));
         } else {
-          throw new Error('Not Ok. ' + response.headers.status);
+          done(new Error('Not Ok. ' + response.headers.status));
         }
       }).catch(function (error) {
         if (error) throw error;
@@ -77,8 +79,10 @@ describe('POST', function() {
         gf.post().projects(PROJECT).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
             done();
+          } else if (response.headers.status = '403 Forbidden') {
+            done(new Error('Your API KEY must belong to an admin.'));
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -96,8 +100,10 @@ describe('POST', function() {
         gf.post().metrics(METRIC).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
             done();
+          } else if (response.headers.status = '403 Forbidden') {
+            done(new Error('Your API KEY must belong to an admin.'));
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
@@ -115,8 +121,10 @@ describe('POST', function() {
         gf.post().circles(CHECKLIST_ITEM).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
             done();
+          } else if (response.headers.status = '403 Forbidden') {
+            done(new Error('Your API KEY must belong to an admin.'));
           } else {
-            throw new Error('Not Ok. ' + response.headers.status);
+            done(new Error('Not Ok. ' + response.headers.status));
           }
         }).catch(function (error) {
           if (error) throw error;
