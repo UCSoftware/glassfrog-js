@@ -4,7 +4,7 @@
   "description": "Node.js wrapper for the GlassFrog API.",
   "main": "./lib/glassfrog.js",
   "scripts": {
-    "test": "mocha tests/get.js"
+    "test": "mocha tests/*.js"
   },
   "repository": {
     "type": "git",

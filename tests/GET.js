@@ -489,28 +489,36 @@ function testMethods(context, gf, timeout, cache) {
   });
 }
 
-var gf = GlassFrog(locals.API_KEY);
-describe('Without Caching GET', function () {
-  testMethods(this, gf, 0, false);
-});
-describe('Try to Cache without cacheEnabled GET', function () {
-  this.timeout(0);
-  describe('circles', function() {
-    describe('all', function() {
-      it('Should throw an error', function(done) {
-        gf.get(true).circles().all().spread(function (response, data) {
-          done(new Error('No Error ' + response.headers.status));
-        }).catch(function (error) {
-          if (error) done();
+describe("Without Caching", function() {
+  var gf = GlassFrog(locals.API_KEY);
+  describe('GET', function () {
+    testMethods(this, gf, 0, false);
+  });
+  describe('Try to Cache without cacheEnabled GET', function () {
+    this.timeout(0);
+    describe('circles', function() {
+      describe('all', function() {
+        it('Should throw an error', function(done) {
+          try {
+            gf.get(true).circles().all().spread(function (response, data) {
+              done(new Error('No Error ' + response.headers.status));
+            }).catch(function (error) {
+              if (error) done();
+            });
+          } catch(error) {
+            done();
+          }
         });
       });
     });
   });
 });
-gf = GlassFrog(locals.API_KEY, true)
-describe('Build the Cache GET', function () {
-  testMethods(this, gf, 0, true);
-});
-describe('Poll the Cache GET', function () {
-  testMethods(this, gf, 500, true);
+describe("With Caching", function() {
+  var gf = GlassFrog(locals.API_KEY, true)
+  describe('Build the Cache GET', function () {
+    testMethods(this, gf, 0, true);
+  });
+  describe('Poll the Cache GET', function () {
+    testMethods(this, gf, 500, true);
+  });
 });
