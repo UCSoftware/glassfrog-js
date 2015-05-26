@@ -499,7 +499,7 @@ describe('Try to Cache without cacheEnabled GET', function () {
     describe('all', function() {
       it('Should throw an error', function(done) {
         gf.get(true).circles().all().spread(function (response, data) {
-          done( new Error('No Error ' + response.headers.status));
+          done(new Error('No Error ' + response.headers.status));
         }).catch(function (error) {
           if (error) done();
         });
