@@ -2,24 +2,36 @@
 
 These functions modify existing data on GlassFrog with PATCH HTTP requests.
 
-They are only available for People, Projects, Metrics, and Checklist Items.
-
-These functions also require an API Key belong to an administrator.
+They are only available for Roles, People, Projects, Metrics, and Checklist Items.
 
 ### General form:
 
-All POST functions begin with the *post* function.
+All PATCH functions begin with the *patch* function.
 
 ```javascript
-gf.post() ...
+gf.patch() ...
+```
+
+## Roles
+
+Assigns a role with the id of $ROLEID to a person with the id of $PERSONID:
+
+```javascript
+gf.patch().roles().withID($ROLEID).add().to().people().withID($PERSONID).then(...).catch(...);
+```
+
+Removes a role with the id of $ROLEID from a person with the id of $PERSONID:
+
+```javascript
+gf.patch().roles().withID($ROLEID).remove().from().people().withID($PERSONID).then(...).catch(...);
 ```
 
 ## People
 
-Create a new person in GlassFrog with the attributes of **$ATTRIBUTES**:
+Updates a person with the id of $ID in GlassFrog with the new attributes of **$ATTRIBUTES**:
 
 ```javascript
-gf.post().circles($ATTRIBUTES).then(...).catch(...);
+gf.patch().people().withID($ID).change($ATTRIBUTES).then(...).catch(...);
 ```
 
 ###### $ATTRIBUTES should take the form of:
@@ -31,14 +43,12 @@ gf.post().circles($ATTRIBUTES).then(...).catch(...);
 }
 ```
 
-**name** and **email** are required fields.
-
 ## Projects
 
-Creates a new project in GlassFrog with the attributes of **$ATTRIBUTES**
+Updates a project with the id of $ID in GlassFrog with the new attributes of **$ATTRIBUTES**:
 
 ```javascript
-gf.post().projects($ATTRIBUTES).then(...).catch(...);
+gf.patch().projects().withID($ID).change($ATTRIBUTES).then(...).catch(...);
 ```
 
 ###### $ATTRIBUTES should take the form of:
@@ -51,12 +61,18 @@ gf.post().projects($ATTRIBUTES).then(...).catch(...);
 }
 ```
 
-## Metrics
-
-Create a new metric in GlassFrog with the attributes of **$ATTRIBUTES**:
+Changes the status of a project to *archived*:
 
 ```javascript
-gf.post().metrics($ATTRIBUTES).then(...).catch(...);
+gf.patch().projects().withID($ID).archive().then(...).catch(...);
+```
+
+## Metrics
+
+Updates a metric with the id of $ID in GlassFrog with the new attributes of **$ATTRIBUTES**:
+
+```javascript
+gf.patch().metrics().withID($ID).change($ATTRIBUTES).then(...).catch(...);
 ```
 
 ###### $ATTRIBUTES should take the form of:
@@ -72,10 +88,10 @@ gf.post().metrics($ATTRIBUTES).then(...).catch(...);
 
 ## Checklist Item
 
-Create a new checklist item in GlassFrog with the attributes of **$ATTRIBUTES**:
+Updates a checklist item with the id of $ID in GlassFrog with the new attributes of **$ATTRIBUTES**:
 
 ```javascript
-gf.post().checklistItems($ATTRIBUTES).then(...).catch(...);
+gf.patch().checklistItems().withID($ID).change($ATTRIBUTES).then(...).catch(...);
 ```
 
 ###### $ATTRIBUTES should take the form of:
