@@ -6,7 +6,7 @@ var assert = require('assert'),
 // These will be the new objects created on GlassFrog.
 var PERSON = {
       "name": "Test Person",
-      "email": "test.person@quirkyinc.com"
+      "email": "test.person." + randomID = Math.floor(Math.random() * 999999) + "@quirkyinc.com"
     },
     PROJECT = {
       "description": "Test Project",
