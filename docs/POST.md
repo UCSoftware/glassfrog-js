@@ -28,8 +28,8 @@ gf.post().circles($ATTRIBUTES).then(...).catch(...);
 
 ```javascript
 { 
-	"name": "Sally Benally", 
-	"email": "sally@example.com" 
+  "name": "Sally Benally", 
+  "email": "sally@example.com" 
 }
 ```
 
@@ -47,9 +47,9 @@ gf.post().projects($ATTRIBUTES).then(...).catch(...);
 
 ```javascript
 { 
-	"description": "API docs updated", 
-	"circle_id": 346, 
-	"role_id": 2331 
+  "description": "API docs updated", 
+  "circle_id": 346, 
+  "role_id": 2331 
 }
 ```
 
@@ -65,10 +65,10 @@ gf.post().metrics($ATTRIBUTES).then(...).catch(...);
 
 ```javascript
 {
-	"description": "A New Metric", 
-	"frequency": "Weekly", 
-	"circle_id": 856843816, 
-	"role_id": 905502603
+  "description": "A New Metric", 
+  "frequency": "Weekly", 
+  "circle_id": 856843816, 
+  "role_id": 905502603
 }
 ```
 
@@ -84,9 +84,9 @@ gf.post().checklistItems($ATTRIBUTES).then(...).catch(...);
 
 ```javascript
 {
-	"description": "A New Item", 
-	"frequency": "Weekly", 
-	"circle_id": 856843816, 
-	"role_id": 905502603
+  "description": "A New Item", 
+  "frequency": "Weekly", 
+  "circle_id": 856843816, 
+  "role_id": 905502603
 }
 ```
