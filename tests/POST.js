@@ -6,7 +6,7 @@ var assert = require('assert'),
 // These will be the new objects created on GlassFrog.
 var PERSON = {
       "name": "Test Person",
-      "email": "test.person@example.com"
+      "email": "test.person@quirkyinc.com"
     },
     PROJECT = {
       "description": "Test Project",
@@ -67,7 +67,7 @@ describe('POST', function() {
       gf.post().people(PERSON).spread(function (response, data) {
         if (response.headers.status === '200 OK') {
           done();
-        } else if (response.headers.status = '403 Forbidden') {
+        } else if (response.headers.status === '403 Forbidden') {
           done(new Error('Your API KEY must belong to an admin.'));
         } else {
           done(new Error('Not Ok. ' + response.headers.status));
@@ -78,14 +78,14 @@ describe('POST', function() {
     });
   });
   describe('projects', function() {
-    it('Should return 200 OK or 404 Not Found', function(done) {
+    it('Should return 200 OK and the object', function(done) {
       if (testRoleID && testCircleID) {
         PROJECT.circle_id = testCircleID,
         PROJECT.role_id = testRoleID;
         gf.post().projects(PROJECT).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
             done();
-          } else if (response.headers.status = '403 Forbidden') {
+          } else if (response.headers.status === '403 Forbidden') {
             done(new Error('Your API KEY must belong to an admin.'));
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -99,14 +99,14 @@ describe('POST', function() {
     });
   });
   describe('metrics', function() {
-    it('Should return 200 OK or 404 Not Found', function(done) {
+    it('Should return 200 OK and the object', function(done) {
       if (testRoleID && testCircleID) {
         METRIC.circle_id = testCircleID,
         METRIC.role_id = testRoleID;
         gf.post().metrics(METRIC).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
             done();
-          } else if (response.headers.status = '403 Forbidden') {
+          } else if (response.headers.status === '403 Forbidden') {
             done(new Error('Your API KEY must belong to an admin.'));
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -120,14 +120,14 @@ describe('POST', function() {
     });
   });
   describe('checklist', function() {
-    it('Should return 200 OK or 404 Not Found', function(done) {
+    it('Should return 200 OK and the object', function(done) {
       if (testRoleID && testCircleID) {
         CHECKLIST_ITEM.circle_id = testCircleID,
         CHECKLIST_ITEM.role_id = testRoleID;
         gf.post().checklistItems(CHECKLIST_ITEM).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
             done();
-          } else if (response.headers.status = '403 Forbidden') {
+          } else if (response.headers.status === '403 Forbidden') {
             done(new Error('Your API KEY must belong to an admin.'));
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
