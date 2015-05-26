@@ -6,7 +6,7 @@ They return a JSON with the copy of the object that was created in the body.
 
 They are only available for People, Projects, Metrics, and Checklist Items.
 
-These functions also require an API Key belong to an administrator.
+Some of these functions also require an API Key belong to an administrator.
 
 ### General form:
 
@@ -19,6 +19,8 @@ gf.post() ...
 ## People
 
 Create a new person in GlassFrog with the attributes of **$ATTRIBUTES**:
+
+###### Requires an admin API Key.
 
 ```javascript
 gf.post().circles($ATTRIBUTES).then(...).catch(...);
@@ -39,6 +41,8 @@ gf.post().circles($ATTRIBUTES).then(...).catch(...);
 
 Creates a new project in GlassFrog with the attributes of **$ATTRIBUTES**
 
+###### Requires an admin API Key to add projects to circles one does not belong to.
+
 ```javascript
 gf.post().projects($ATTRIBUTES).then(...).catch(...);
 ```
@@ -56,6 +60,8 @@ gf.post().projects($ATTRIBUTES).then(...).catch(...);
 ## Metrics
 
 Create a new metric in GlassFrog with the attributes of **$ATTRIBUTES**:
+
+###### Requires an admin API Key to create global metrics. Members may create metrics for roles they fill.
 
 ```javascript
 gf.post().metrics($ATTRIBUTES).then(...).catch(...);
@@ -75,6 +81,8 @@ gf.post().metrics($ATTRIBUTES).then(...).catch(...);
 ## Checklist Item
 
 Create a new checklist item in GlassFrog with the attributes of **$ATTRIBUTES**:
+
+###### Requires an admin API Key to create global items. Lead Links, Secretaries, or Rep Links can create items for their circle. Members may create items for roles they fill.
 
 ```javascript
 gf.post().checklistItems($ATTRIBUTES).then(...).catch(...);

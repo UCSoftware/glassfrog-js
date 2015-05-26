@@ -1,8 +1,6 @@
-# POST
+# PATCH
 
-These functions push data to GlassFrog and create new objects with POST HTTP requests.
-
-They return a JSON with the copy of the object that was created in the body.
+These functions modify existing data on GlassFrog with PATCH HTTP requests.
 
 They are only available for People, Projects, Metrics, and Checklist Items.
 
