@@ -41,19 +41,25 @@ describe('POST', function() {
   // Currently unused, will be fetched when the person is created if needed.
       testPersonID;
   // Fetch test circle ID created on the GlassFrog UI.
-  gf.get().circles().all().spread(function (response, data) {
-    data.circles.forEach(function (circle) {
-      if (circle.name === TEST_CIRCLE_NAME) {
-        testCircleID = circle.id;
-      }
+  it('Should fetch test circle', function(done) {
+    gf.get().circles().all().spread(function (response, data) {
+      data.circles.forEach(function (circle) {
+        if (circle.name === TEST_CIRCLE_NAME) {
+          testCircleID = circle.id;
+        }
+      });
+      done();
     });
   });
   // Fetch test role ID created on the GlassFrog UI.
-  gf.get().roles().all().spread(function (response, data) {
-    data.roles.forEach(function (role) {
-      if (role.name === TEST_ROLE_NAME) {
-        testRoleID = role.id;
-      }
+  it('Should fetch test role', function(done) {
+    gf.get().roles().all().spread(function (response, data) {
+      data.roles.forEach(function (role) {
+        if (role.name === TEST_ROLE_NAME) {
+          testRoleID = role.id;
+        }
+      });
+      done();
     });
   });
   describe('people', function() {
@@ -62,7 +68,7 @@ describe('POST', function() {
         if (response.headers.status === '200 OK') {
           done();
         } else if (response.headers.status = '403 Forbidden') {
-            done(new Error('Your API KEY must belong to an admin.'));
+          done(new Error('Your API KEY must belong to an admin.'));
         } else {
           done(new Error('Not Ok. ' + response.headers.status));
         }
@@ -118,7 +124,7 @@ describe('POST', function() {
       if (testRoleID && testCircleID) {
         CHECKLIST_ITEM.circle_id = testCircleID,
         CHECKLIST_ITEM.role_id = testRoleID;
-        gf.post().circles(CHECKLIST_ITEM).spread(function (response, data) {
+        gf.post().checklistItems(CHECKLIST_ITEM).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
             done();
           } else if (response.headers.status = '403 Forbidden') {
