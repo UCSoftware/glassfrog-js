@@ -3,6 +3,8 @@ var assert = require('assert'),
  GlassFrog = require('../lib/glassfrog'),
     locals = require('./locals.js');
 
+var DATE = '2000-05-19T07:31:23+00:00';
+
 var randomID = Math.floor(Math.random() * 10000),
   role_names = ['secretary', 'rep link', 'rep_link', 'lead link', 'lead_link', 'facilitator'];
 
@@ -387,7 +389,7 @@ function testMethods(context, gf, timeout, cache) {
     });
     describe('createdSince', function() {
       it('Should return 200 OK', function(done) {
-        gf.get(cache).actions().createdSince('2000-05-19T07:31:23+00:00').spread(function (response, data) {
+        gf.get(cache).actions().createdSince(DATE).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
@@ -460,7 +462,7 @@ function testMethods(context, gf, timeout, cache) {
     });
     describe('createdSince', function() {
       it('Should return 200 OK', function(done) {
-        gf.get(cache).triggers().createdSince('2000-05-19T07:31:23+00:00').spread(function (response, data) {
+        gf.get(cache).triggers().createdSince(DATE).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
@@ -491,7 +493,7 @@ var gf = GlassFrog(locals.API_KEY);
 describe('Without Caching GET', function () {
   testMethods(this, gf, 0, false);
 });
-describe('Try to Cache without Caching GET', function () {
+describe('Try to Cache without cacheEnabled GET', function () {
   this.timeout(0);
   describe('circles', function() {
     describe('all', function() {
