@@ -14,13 +14,13 @@ gf.patch() ...
 
 ## Roles
 
-Assigns a role with the id of $ROLEID to a person with the id of $PERSONID:
+Assigns a role with the id of **$ROLEID** to a person with the id of **$PERSONID**:
 
 ```javascript
 gf.patch().roles().withID($ROLEID).add().to().people().withID($PERSONID).then(...).catch(...);
 ```
 
-Removes a role with the id of $ROLEID from a person with the id of $PERSONID:
+Removes a role with the id of **$ROLEID** from a person with the id of **$PERSONID**:
 
 ```javascript
 gf.patch().roles().withID($ROLEID).remove().from().people().withID($PERSONID).then(...).catch(...);
@@ -28,7 +28,7 @@ gf.patch().roles().withID($ROLEID).remove().from().people().withID($PERSONID).th
 
 ## People
 
-Updates a person with the id of $ID in GlassFrog with the new attributes of **$ATTRIBUTES**:
+Updates a person with the id of **$ID** in GlassFrog with the new attributes of **$ATTRIBUTES**:
 
 ```javascript
 gf.patch().people().withID($ID).change($ATTRIBUTES).then(...).catch(...);
@@ -45,7 +45,7 @@ gf.patch().people().withID($ID).change($ATTRIBUTES).then(...).catch(...);
 
 ## Projects
 
-Updates a project with the id of $ID in GlassFrog with the new attributes of **$ATTRIBUTES**:
+Updates a project with the id of **$ID** in GlassFrog with the new attributes of **$ATTRIBUTES**:
 
 ```javascript
 gf.patch().projects().withID($ID).change($ATTRIBUTES).then(...).catch(...);
@@ -61,7 +61,7 @@ gf.patch().projects().withID($ID).change($ATTRIBUTES).then(...).catch(...);
 }
 ```
 
-Changes the status of a project to *archived*:
+Changes the status of a project with the id of **$ID** to *archived*:
 
 ```javascript
 gf.patch().projects().withID($ID).archive().then(...).catch(...);
@@ -69,7 +69,7 @@ gf.patch().projects().withID($ID).archive().then(...).catch(...);
 
 ## Metrics
 
-Updates a metric with the id of $ID in GlassFrog with the new attributes of **$ATTRIBUTES**:
+Updates a metric with the id of **$ID** in GlassFrog with the new attributes of **$ATTRIBUTES**:
 
 ```javascript
 gf.patch().metrics().withID($ID).change($ATTRIBUTES).then(...).catch(...);
@@ -88,7 +88,7 @@ gf.patch().metrics().withID($ID).change($ATTRIBUTES).then(...).catch(...);
 
 ## Checklist Item
 
-Updates a checklist item with the id of $ID in GlassFrog with the new attributes of **$ATTRIBUTES**:
+Updates a checklist item with the id of **$ID** in GlassFrog with the new attributes of **$ATTRIBUTES**:
 
 ```javascript
 gf.patch().checklistItems().withID($ID).change($ATTRIBUTES).then(...).catch(...);
