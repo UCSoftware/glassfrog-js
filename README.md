@@ -67,11 +67,11 @@ These functions pull data from GlassFrog with GET HTTP requests.
 
 ## [POST](docs/POST.md)
 
-These function push data to GlassFrog and create new objects with POST HTTP requests.
+These functions push data to GlassFrog and create new objects with POST HTTP requests.
 
 ## [PATCH](docs/PATCH.md)
 
-These function modify existing data on GlassFrog with PATCH HTTP requests.
+These functions modify existing data on GlassFrog with PATCH HTTP requests.
 
 ## [DELETE](docs/DELETE.md)
 
