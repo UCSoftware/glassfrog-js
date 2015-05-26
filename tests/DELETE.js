@@ -9,7 +9,7 @@ var TEST_OBJECTS = require('./POST');
 var gf = GlassFrog(locals.API_KEY);
 describe('DELETE', function() {
   this.timeout(0);
-  // These will be used as fields for the objects we are creating.
+  // These will be use to identify the records we are deleting.
   var testRoleID, testPersonID, testProjectID, testMetricID, testChecklistItemID;
   // Fetch test role ID created on the GlassFrog UI.
   it('Should fetch test role id', function(done) {
