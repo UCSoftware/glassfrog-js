@@ -2,8 +2,6 @@
 
 A Node.js wrapper for the GlassFrog API.
 
-Currently only capable of pulling data from and pushing new objects to GlassFrog.
-
 ## Importing
 
 To import this module:
@@ -70,3 +68,11 @@ These functions pull data from GlassFrog with GET HTTP requests.
 ## [POST](docs/POST.md)
 
 These function push data to GlassFrog and create new objects with POST HTTP requests.
+
+## [PATCH](docs/PATCH.md)
+
+These function modify existing data on GlassFrog with PATCH HTTP requests.
+
+## [DELETE](docs/DELETE.md)
+
+These functions delete existing data on GlassFrog with DELETE HTTP requests.
