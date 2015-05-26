@@ -1,4 +1,4 @@
-# POST
+# DELETE
 
 These functions delete existing data on GlassFrog with DELETE HTTP requests.
 
