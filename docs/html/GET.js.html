@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: GET.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: GET.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var globalCache  = require('./cache.js'),
+    graphMethods = require('./graph.js');
+
+function sendRequest(context, cacheEnabled, useCache, suffix, cache, key) {
+  if (cacheEnabled) {
+    if (useCache) {
+      cache[key] = cache[key] || context.sendGET(suffix);
+    } else {
+      cache[key] = context.sendGET(suffix);
+    }
+
+    return cache[key];
+  } else {
+    if (useCache) throw new Error('cacheEnabled is not turned on!');
+
+    return context.sendGET(suffix);
+  }
+}
+
+/**
+  * Retrieve information from the GlassFrog API.
+  *
+  * For examples and more documentation read:
+  * [GET Documentation]{@tutorial GET}
+  *
+  * @class get
+  */
+module.exports = function (context, cacheEnabled, useCache) {
+  var cache = globalCache;
+
+  return {
+    /**
+     * get().circles(): get information on circles
+     * @memberof get
+     * @instance
+     * @class circles
+     */
+    circles: function() {
+      return {
+        /**
+         * get().circles().withID(): get a circle by its circle id.
+         * @memberof get#circles
+         * @instance
+         * @param {string} id circle id
+         * @returns {Promise}
+         */
+        withID: function(id) {
+          return sendRequest(context, cacheEnabled, useCache, 'circles/' + id,
+                             cache.circles.withID, id);
+        },
+        /**
+         * get().circles().all(): fetch a list of all circles.
+         * @memberof get#circles
+         * @instance
+         * @returns {Promise}
+         */
+        all: function() {
+          return sendRequest(context, cacheEnabled, useCache, 'circles',
+                             cache.circles, 'all');
+        }
+      };
+    },
+    /**
+     * get().roles(): get information about roles.
+     * @memberof get
+     * @instance
+     * @class roles
+     */
+    roles: function() {
+      return {
+        /**
+         * get().roles().withID(): fetch a role by its id
+         * @memberof get#roles
+         * @instance
+         * @param {string} id role id
+         * @returns {Promise}
+         */
+        withID: function(id) {
+          return sendRequest(context, cacheEnabled, useCache, 'roles/' + id,
+                             cache.roles.withID, id);
+        },
+        /**
+         * get().roles().within(): get roles within a subsequent scope.
+         * @memberof get#roles
+         * @instance
+         * @class within
+         */
+        within: function() {
+          return {
+            /**
+             * get().roles().within().circles():
+             *   get roles within a circle's scope.
+             *
+             *   @see {@link get#roles#within#circles#withID}.
+             *
+             * @memberof get#roles#within
+             * @instance
+             * @class circles
+             */
+            circles: function() {
+              return {
+                /**
+                 * get().roles().within().circles().withID(id):
+                 *  get roles within a circle's scope by circle id.
+                 * @memberof get#roles#within#circles
+                 * @instance
+                 * @param {string} id circle id
+                 * @returns {Promise}
+                 */
+                withID: function(id) {
+                  return sendRequest(context, cacheEnabled, useCache, 'circles/' + id + '/roles',
+                                     cache.roles.within.circles.withID, id);
+                }
+              };
+            },
+            /**
+             * get().roles().within().people():
+             *   get roles within a persons's scope.
+             * @memberof get#roles#within
+             * @instance
+             * @class people
+             */
+            people: function() {
+              return {
+                /**
+                 * get().roles().within().people().withID(id):
+                 *  get roles within a person's scope by id.
+                 *
+                 *  That is to say, find which roles belong to a given
+                 *  person.
+                 *
+                 * @memberof get#roles#within#people
+                 * @instance
+                 * @param {string} id person id
+                 * @returns {Promise}
+                 */
+                withID: function(id) {
+                  return sendRequest(context, cacheEnabled, useCache, 'roles?person_id=' + id,
+                                     cache.roles.within.people.withID, id);
+                }
+              }
+            }
+          }
+        },
+        /**
+         * get().roles().all(): fetch a list of all roles.
+         * @memberof get#roles
+         * @instance
+         * @returns {Promise}
+         */
+        all: function() {
+          return sendRequest(context, cacheEnabled, useCache, 'roles',
+                             cache.roles, 'all');
+        }
+      };
+    },
+    /**
+     * get().people(): get information about people (individual users).
+     * @memberof get
+     * @instance
+     * @class people
+     */
+    people: function() {
+      return {
+        /**
+         * get().people().withID(): get a person by its id.
+         * @memberof get#people
+         * @instance
+         * @param {string} id people id
+         * @returns {Promise}
+         */
+        withID: function(id) {
+          return sendRequest(context, cacheEnabled, useCache, 'people/' + id,
+                             cache.people.withID, id);
+        },
+        /**
+         * get().people().within(): get people within a subsequent scope.
+         * @memberof get#people
+         * @instance
+         * @class within
+         */
+        within: function() {
+          return {
+            /**
+             * get().people().within().circles():
+             *   find which people belong to a circle's scope
+             * @memberof get#people#within
+             * @instance
+             * @class circles
+             */
+            circles: function() {
+              return {
+                /**
+                 * get().people().within().circles().withID(id):
+                 *  get people within a circles's scope by circle id.
+                 *
+                 *  That is to say, find which people are a member of a
+                 *  given circle.
+                 *
+                 * @memberof get#people#within#circle
+                 * @instance
+                 * @param {string} id circle id
+                 * @returns {Promise}
+                 */
+                withID: function(id) {
+                  return sendRequest(context, cacheEnabled, useCache, 'circles/' + id + '/people',
+                                     cache.people.within.circles.withID, id);
+                }
+              };
+            },
+            /**
+             * get().people().within().roles():
+             *   find people who fill a particular role.
+             * @memberof get#people#within
+             * @instance
+             * @class people
+             */
+            roles: function() {
+              return {
+                /**
+                 * get().people().within().roles().withName(name):
+                 *  get the people who fill a role by a role's name.
+                 *
+                 *  The role's must be one of the core Holacracy roles,
+                 *  e.g. "secretary", "rep link", "lead link", or
+                 *  "facilitator".
+                 *
+                 * @memberof get#people#within#roles
+                 * @instance
+                 * @param {string} name role name
+                 * @returns {Promise}
+                 */
+                withName: function(name) {
+                  if (typeof name === 'string') {
+                    switch(name.toLowerCase()) {
+                      // .get().people().within().roles().withName('secretary')
+                      case 'secretary':
+                        return sendRequest(context, cacheEnabled, useCache, 'people?role=secretary',
+                                           cache.people.within.roles.withName, 'secretary');
+                        break;
+                      // .get().people().within().roles().withName('rep_link')
+                      case 'rep_link':
+                      // .get().people().within().roles().withName('rep link')
+                      case 'rep link':
+                        return sendRequest(context, cacheEnabled, useCache, 'people?role=rep_link',
+                                           cache.people.within.roles.withName, 'rep_link');
+                        break;
+                      // .get().people().within().roles().withName('lead_link')
+                      case 'lead_link':
+                      // .get().people().within().roles().withName('lead link')
+                      case 'lead link':
+                        return sendRequest(context, cacheEnabled, useCache, 'people?role=lead_link',
+                                           cache.people.within.roles.withName, 'lead_link');
+                        break;
+                      // .get().people().within().roles().withName('facilitator')
+                      case 'facilitator':
+                        return sendRequest(context, cacheEnabled, useCache, 'people?role=facilitator',
+                                           cache.people.within.roles.withName, 'facilitator');
+                        break;
+                      default:
+                        throw new Error("Invalid argument.");
+                    }
+                  } else {
+                    throw new TypeError("Argument must be a string.");
+                  }
+                }
+              };
+            }
+          };
+        },
+        /**
+         * get().people().all(): fetch a list of all people.
+         * @memberof get#people
+         * @instance
+         * @returns {Promise}
+         */
+        all: function() {
+          return sendRequest(context, cacheEnabled, useCache, 'people',
+                             cache.people, 'all');
+        }
+      };
+    },
+    /**
+     * get().projects(): retrieve projects
+     * @memberof get
+     * @instance
+     * @class projects
+     */
+    projects: function() {
+      return {
+        /**
+         * get().projects().withID(): get a project by its id.
+         * @memberof get#projects
+         * @instance
+         * @param {string} id project id
+         * @returns {Promise}
+         */
+        withID: function(id) {
+          return sendRequest(context, cacheEnabled, useCache, 'projects/' + id,
+                             cache.projects.withID, id);
+        },
+        /**
+         * get().projects().within(): get projects within a subsequent scope.
+         * @memberof get#projects
+         * @instance
+         * @class within
+         */
+        within: function() {
+          return {
+            /**
+             * get().projects().within().circles():
+             *   get roles within a circle's scope.
+             *
+             *   @see {@link get#projects#within#circles#withID}.
+             *
+             * @memberof get#projects#within
+             * @instance
+             * @class circles
+             */
+            circles: function() {
+              return {
+                /**
+                 * get().projects().within().circles().withID(id):
+                 *  get projects within a circle's by circle id.
+                 * @memberof get#projects#within#circles
+                 * @instance
+                 * @param {string} id circle id
+                 * @returns {Promise}
+                 */
+                withID: function(id) {
+                  return sendRequest(context, cacheEnabled, useCache, 'projects?circle_id=' + id,
+                                     cache.projects.within.circles.withID, id);
+                }
+              };
+            }
+          };
+        },
+        /**
+         * get().projects().all(): fetch a list of all projects.
+         * @memberof get#projects
+         * @instance
+         * @returns {Promise}
+         */
+        all: function() {
+          return sendRequest(context, cacheEnabled, useCache, 'projects',
+                             cache.projects, 'all');
+        }
+      };
+    },
+    /**
+     * get().metrics(): retrieve metrics
+     * @memberof get
+     * @instance
+     * @class metrics
+     */
+    metrics: function() {
+      return {
+        /**
+         * get().metrics().withID(): get a metric by its id.
+         * @memberof get#metrics
+         * @instance
+         * @param {string} id metric id
+         * @returns {Promise}
+         */
+        withID: function(id) {
+          return sendRequest(context, cacheEnabled, useCache, 'metrics/' + id,
+                             cache.metrics.withID, id);
+        },
+        /**
+         * get().metrics().within(): get metrics within a subsequent scope.
+         * @memberof get#metrics
+         * @instance
+         * @class within
+         */
+        within: function() {
+          return {
+            /**
+             * get().metrics().within().circles():
+             *   get metrics within a circle's scope.
+             *
+             *   @see {@link get#metrics#within#circles#withID#withGlobals}
+             *   @see {@link get#metrics#within#circles#withID#withoutGlobals}
+             *
+             * @memberof get#metrics#within
+             * @instance
+             * @class circles
+             */
+            circles: function() {
+              return {
+                /**
+                 * get().projects().within().circles().withID(id):
+                 *  get metrics within a circle's by circle id.
+                 *
+                 *   @see {@link get#metrics#within#circles#withID#withGlobals}
+                 *   @see {@link get#metrics#within#circles#withID#withoutGlobals}
+                 *
+                 * @memberof get#metrics#within#circles
+                 * @instance
+                 * @param {string} id circle id
+                 * @returns {Promise}
+                 */
+                withID: function(id) {
+                  return {
+                    /**
+                     * get().metrics().within().circles().withID(id).withGlobals():
+                     *  get metrics within a circle's by circle id, including
+                     *  global metrics.
+                     *
+                     *
+                     *   @see {@link get#metrics#within#circles#withID#withGlobals}
+                     *   @see {@link get#metrics#within#circles#withID#withoutGlobals}
+                     *
+                     * @memberof get#metrics#within#circles#withID
+                     * @instance
+                     * @returns {Promise}
+                     */
+                    withGlobals: function() {
+                      return sendRequest(context, cacheEnabled, useCache, 'circles/' + id + '/metrics',
+                                         cache.metrics.within.circles.withGlobals.withID, id);
+                    },
+                    /**
+                     * get().metrics().within().circles().withID(id).withoutGlobals():
+                     *  get metrics within a circle's by circle id, without
+                     *  global metrics.
+                     *
+                     * @memberof get#metrics#within#circles#withID
+                     * @instance
+                     * @returns {Promise}
+                     */
+                    withoutGlobals: function() {
+                      return sendRequest(context, cacheEnabled, useCache, 'metrics?circle_id=' + id + '&amp;global=false',
+                                         cache.metrics.within.circles.withoutGlobals.withID, id);
+                    }
+                  }
+                }
+              };
+            }
+          };
+        },
+        /**
+         * get().metrics().globals(): fetch a list of all global metrics
+         * @memberof get#metrics
+         * @instance
+         * @returns {Promise}
+         */
+        globals: function() {
+          return sendRequest(context, cacheEnabled, useCache, 'metrics?global=true',
+                             cache.metrics, 'globals');
+        },
+        /**
+         * get().metrics().all(): fetch a list of all metrics
+         * @memberof get#metrics
+         * @instance
+         * @returns {Promise}
+         */
+        all: function() {
+          return sendRequest(context, cacheEnabled, useCache, 'metrics?global=false',
+                             cache.metrics, 'all');
+        }
+      };
+    },
+    /**
+     * get().checklistItems(): retrieve checklists
+     * @memberof get
+     * @instance
+     * @class checklistItems
+     */
+    checklistItems: function() {
+      return {
+        /**
+         * get().checklistItems().withID(): get a checklist by its id.
+         * @memberof get#checklistItems
+         * @instance
+         * @param {string} id checklist id
+         * @returns {Promise}
+         */
+        withID: function(id) {
+          return sendRequest(context, cacheEnabled, useCache, 'checklist_items/' + id,
+                             cache.checklistItems.withID, id);
+        },
+        /**
+         * get().checklistItems().within(): get checklists within a subsequent scope.
+         * @memberof get#checklistItems
+         * @instance
+         * @class within
+         */
+        within: function() {
+          return {
+            /**
+             * get().projects().within().circles():
+             *   get checklists within a circle's scope.
+             *
+             *   @see {@link get#checklistItems#within#circles#withID#withGlobals}
+             *   @see {@link get#checklistItems#within#circles#withID#withoutGlobals}
+             *
+             * @memberof get#checklistItems#within
+             * @instance
+             * @class circles
+             */
+            circles: function() {
+              return {
+                /**
+                 * get().checklistItems().within().circles():
+                 *   get checklists within a circle's scope.
+                 *
+                 *   @see {@link get#checklistItems#within#circles#withID#withGlobals}
+                 *   @see {@link get#checklistItems#within#circles#withID#withoutGlobals}
+                 *
+                 * @memberof get#checklistItems#within
+                 * @instance
+                 * @class circles
+                 */
+                withID: function(id) {
+                  return {
+                    /**
+                     * get().checklistItems().within().circles().withID(id).withGlobals():
+                     *  get checklists within a circle's by circle id, including
+                     *  global checklists.
+                     *
+                     *
+                     *   @see {@link get#checklistItems#within#circles#withID#withGlobals}
+                     *   @see {@link get#checklistItems#within#circles#withID#withoutGlobals}
+                     *
+                     * @memberof get#checklistItems#within#circles#withID
+                     * @instance
+                     * @returns {Promise}
+                     */
+                    withGlobals: function() {
+                      return sendRequest(context, cacheEnabled, useCache, 'checklist_items?circle_id=' + id,
+                                         cache.checklistItems.within.circles.withGlobals.withID, id);
+                    },
+                    /**
+                     * get().checklistItems().within().circles().withID(id).withoutGlobals():
+                     *  get checklists within a circle's by circle id, without
+                     *  global checklists.
+                     *
+                     * @memberof get#checklistItems#within#circles#withID
+                     * @instance
+                     * @returns {Promise}
+                     */
+                    withoutGlobals: function() {
+                      return sendRequest(context, cacheEnabled, useCache, 'checklist_items?circle_id=' + id + '&amp;global=false',
+                                         cache.checklistItems.within.circles.withoutGlobals.withID, id);
+                    }
+                  }
+                }
+              };
+            }
+          };
+        },
+        /**
+         * get().checklistItems().globals(): fetch a list of all global checklists
+         * @memberof get#checklistItems
+         * @instance
+         * @returns {Promise}
+         */
+        globals: function() {
+          return sendRequest(context, cacheEnabled, useCache, 'checklist_items?global=true',
+                             cache.checklistItems, 'globals');
+        },
+        /**
+         * get().checklistItems().all(): fetch a list of all checklists
+         * @memberof get#checklistItems
+         * @instance
+         * @returns {Promise}
+         */
+        // .get().checklistItems().all()
+        all: function() {
+          return sendRequest(context, cacheEnabled, useCache, 'checklist_items',
+                             cache.checklistItems, 'all');
+        }
+      };
+    },
+    /**
+     * get().actions(): retrieve actions
+     * @memberof get
+     * @instance
+     * @class actions
+     */
+    actions: function() {
+      return {
+        /**
+         * get().actions().withID(): get an action by its id.
+         * @memberof get#actions
+         * @instance
+         * @param {string} id action id
+         * @returns {Promise}
+         */
+        withID: function(id) {
+          return sendRequest(context, cacheEnabled, useCache, 'actions/' + id,
+                             cache.actions.withID, id);
+        },
+        /**
+         * get().actions().within(): get actions within a subsequent scope.
+         * @memberof get#actions
+         * @instance
+         * @class within
+         */
+        within: function() {
+          return {
+            /**
+             * get().actions().within().circles():
+             *   get actions within a circle's scope.
+             *
+             *   @see {@link get#actions#within#circles#withID}
+             *
+             * @memberof get#actions#within
+             * @instance
+             * @class circles
+             */
+            circles: function() {
+              return {
+                /**
+                 * get().actions().within().circles().withID(id):
+                 *  get actions within a circle by circle id.
+                 *
+                 * @memberof get#actions#within#circles
+                 * @instance
+                 * @param {string} id circle id
+                 * @returns {Promise}
+                 */
+                withID: function(id) {
+                  return sendRequest(context, cacheEnabled, useCache, 'actions?circle_id=' + id,
+                                     cache.actions.within.circles.withID, id);
+                }
+              };
+            },
+            /**
+             * get().actions().within().people():
+             *  get actions belonging to a person
+             *
+             *   @see {@link get#actions#within#people#withID}
+             *
+             * @memberof get#actions#within
+             * @instance
+             * @returns {Promise}
+             */
+            people: function() {
+              return {
+                /**
+                 * get().actions().within().people().withID(id):
+                 *  get actions belonging to a person by a person's id
+                 *
+                 * @memberof get#actions#within#people
+                 * @instance
+                 * @param {string} id person's id
+                 * @returns {Promise}
+                 */
+                withID: function(id) {
+                  return sendRequest(context, cacheEnabled, useCache, 'actions?person_id=' + id,
+                                     cache.actions.within.people.withID, id);
+                }
+              };
+            }
+          };
+        },
+        /**
+         * get().actions().createdSince(): retrieve actions after a particular date
+         * @memberof get#actions
+         * @instance
+         * @param {string} date ISO 8601 date {@link http://en.wikipedia.org/wiki/ISO_8601}
+         * @returns {Promise}
+         */
+        createdSince: function(date) {
+          return sendRequest(context, cacheEnabled, useCache, 'actions?created_since=' + date,
+                             cache.actions.createdSince, date);
+        },
+        /**
+         * get().actions().actions(): retrieve all actions
+         * @memberof get#actions
+         * @instance
+         * @returns {Promise}
+         */
+        all: function() {
+          return sendRequest(context, cacheEnabled, useCache, 'actions',
+                             cache.actions, 'all');
+        }
+      };
+    },
+    /**
+     * get().triggers(): retrieve triggers
+     * @memberof get
+     * @instance
+     * @class triggers
+     */
+    triggers: function() {
+      return {
+        /**
+         * get().triggers().withID(): get a trigger by its id
+         * @memberof get#triggers
+         * @instance
+         * @param {string} id trigger id
+         * @returns {Promise}
+         */
+        withID: function(id) {
+          return sendRequest(context, cacheEnabled, useCache, 'triggers/' + id,
+                             cache.triggers.withID, id);
+        },
+        /**
+         * get().triggers().within(): get triggers within a subsequent scope.
+         * @memberof get#actions
+         * @instance
+         * @class within
+         */
+        within: function() {
+          return {
+            /**
+             * get().triggers().within().circles():
+             *   get triggers within a circle's scope.
+             *
+             *   @see {@link get#triggers#within#circles#withID}
+             *
+             * @memberof get#triggers#within
+             * @instance
+             * @class circles
+             */
+            circles: function() {
+              return {
+                /**
+                 * get().triggers().within().circles().withID(id):
+                 *  get triggers within a circle by circle id.
+                 *
+                 * @memberof get#triggers#within#circles
+                 * @instance
+                 * @param {string} id circle id
+                 * @returns {Promise}
+                 */
+                withID: function(id) {
+                  return sendRequest(context, cacheEnabled, useCache, 'triggers?circle_id=' + id,
+                                     cache.triggers.within.circles.withID, id);
+                }
+              };
+            },
+            /**
+             * get().triggers().within().people():
+             *  get triggers belonging to a person
+             *
+             *   @see {@link get#triggers#within#people#withID}
+             *
+             * @memberof get#triggers#within
+             * @instance
+             * @returns {Promise}
+             */
+            people: function() {
+              return {
+                /**
+                 * get().triggers().within().people().withID(id):
+                 *  get triggers belonging to a person by a person's id
+                 *
+                 * @memberof get#triggers#within#people
+                 * @instance
+                 * @param {string} id person's id
+                 * @returns {Promise}
+                 */
+                withID: function(id) {
+                  return sendRequest(context, cacheEnabled, useCache, 'triggers?person_id=' + id,
+                                     cache.triggers.within.people.withID, id);
+                }
+              };
+            }
+          };
+        },
+        /**
+         * get().triggers().createdSince(): retrieve triggers after a particular date
+         * @memberof get#triggers
+         * @instance
+         * @param {string} date ISO 8601 date {@link http://en.wikipedia.org/wiki/ISO_8601}
+         * @returns {Promise}
+         */
+        createdSince: function(date) {
+          return sendRequest(context, cacheEnabled, useCache, 'triggers?created_since=' + date,
+                             cache.triggers.createdSince, date);
+        },
+        /**
+         * get().triggers().all(): retrieve all actions
+         * @memberof get#triggers
+         * @instance
+         * @returns {Promise}
+         */
+        all: function() {
+          return sendRequest(context, cacheEnabled, useCache, 'triggers',
+                             cache.triggers, 'all');
+        }
+      };
+    },
+    /* Build an organization's graph, see: GETgraph.js */
+    graph: function() { return graphMethods(this); }
+  };
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glassfrog.html">glassfrog</a></li></ul><h3>Classes</h3><ul><li><a href="delete.html">delete</a></li><li><a href="get.html">get</a></li><li><a href="get_actions.html">actions</a></li><li><a href="get_actions_within.html">within</a></li><li><a href="get_actions_within_circles.html">circles</a></li><li><a href="get_checklistItems.html">checklistItems</a></li><li><a href="get_checklistItems_within.html">within</a></li><li><a href="get_checklistItems_within_circles.html">circles</a></li><li><a href="get_circles.html">circles</a></li><li><a href="get_graph.html">graph</a></li><li><a href="get_metrics.html">metrics</a></li><li><a href="get_metrics_within.html">within</a></li><li><a href="get_metrics_within_circles.html">circles</a></li><li><a href="get_people.html">people</a></li><li><a href="get_people_within.html">within</a></li><li><a href="get_people_within_circles.html">circles</a></li><li><a href="get_people_within_people.html">people</a></li><li><a href="get_projects.html">projects</a></li><li><a href="get_projects_within.html">within</a></li><li><a href="get_projects_within_circles.html">circles</a></li><li><a href="get_roles.html">roles</a></li><li><a href="get_roles_within.html">within</a></li><li><a href="get_roles_within_circles.html">circles</a></li><li><a href="get_roles_within_people.html">people</a></li><li><a href="get_triggers.html">triggers</a></li><li><a href="get_triggers_within_circles.html">circles</a></li><li><a href="patch.html">patch</a></li><li><a href="post.html">post</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-DELETE_.html">DELETE</a></li><li><a href="tutorial-GET_.html">GET</a></li><li><a href="tutorial-PATCH_.html">PATCH</a></li><li><a href="tutorial-POST_.html">POST</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Wed May 27 2015 11:44:08 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
