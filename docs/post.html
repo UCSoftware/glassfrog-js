@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: post</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: post</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        post
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="post"><span class="type-signature"></span>new post<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Create new objects within GlassFrog.</p>
+<p>These functions push data to GlassFrog and create new objects with POST HTTP requests.</p>
+<p>They return a JSON with the copy of the object that was created in the body.</p>
+<p>They are only available for People, Projects, Metrics, and Checklist Items.</p>
+<p>Some of these functions also require an API Key belong to an administrator.</p>
+<h3>General form:</h3><p>All POST functions begin with the <em>post</em> function.</p>
+<pre class="prettyprint source lang-javascript"><code>gf.post() ...</code></pre><h2>People</h2><p>Create a new person in GlassFrog with the attributes of <strong>$ATTRIBUTES</strong>:</p>
+<h6>Requires an admin API Key.</h6><pre class="prettyprint source lang-javascript"><code>gf.post().circles($ATTRIBUTES).then(...).catch(...);</code></pre><h6>$ATTRIBUTES should take the form of:</h6><pre class="prettyprint source lang-javascript"><code>{
+  &quot;name&quot;: &quot;Sally Benally&quot;,
+  &quot;email&quot;: &quot;sally@example.com&quot;
+}</code></pre><p><strong>name</strong> and <strong>email</strong> are required fields.</p>
+<h2>Projects</h2><p>Creates a new project in GlassFrog with the attributes of <strong>$ATTRIBUTES</strong></p>
+<h6>Requires an admin API Key to add projects to circles one does not belong to.</h6><pre class="prettyprint source lang-javascript"><code>gf.post().projects($ATTRIBUTES).then(...).catch(...);</code></pre><h6>$ATTRIBUTES should take the form of:</h6><pre class="prettyprint source lang-javascript"><code>{
+  &quot;description&quot;: &quot;API docs updated&quot;,
+  &quot;circle_id&quot;: 346,
+  &quot;role_id&quot;: 2331
+}</code></pre><h2>Metrics</h2><p>Create a new metric in GlassFrog with the attributes of <strong>$ATTRIBUTES</strong>:</p>
+<h6>Requires an admin API Key to create global metrics. Members may create metrics for roles they fill.</h6><pre class="prettyprint source lang-javascript"><code>gf.post().metrics($ATTRIBUTES).then(...).catch(...);</code></pre><h6>$ATTRIBUTES should take the form of:</h6><pre class="prettyprint source lang-javascript"><code>{
+  &quot;description&quot;: &quot;A New Metric&quot;,
+  &quot;frequency&quot;: &quot;Weekly&quot;,
+  &quot;circle_id&quot;: 856843816,
+  &quot;role_id&quot;: 905502603
+}</code></pre><h2>Checklist Item</h2><p>Create a new checklist item in GlassFrog with the attributes of <strong>$ATTRIBUTES</strong>:</p>
+<h6>Requires an admin API Key to create global items. Lead Links, Secretaries, or Rep Links can create items for their circle. Members may create items for roles they fill.</h6><pre class="prettyprint source lang-javascript"><code>gf.post().checklistItems($ATTRIBUTES).then(...).catch(...);</code></pre><h6>$ATTRIBUTES should take the form of:</h6><pre class="prettyprint source lang-javascript"><code>{
+  &quot;description&quot;: &quot;A New Item&quot;,
+  &quot;frequency&quot;: &quot;Weekly&quot;,
+  &quot;circle_id&quot;: 856843816,
+  &quot;role_id&quot;: 905502603
+}</code></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="POST.js.html">POST.js</a>, <a href="POST.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="people"><span class="type-signature"></span>people<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Post people</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="POST.js.html">POST.js</a>, <a href="POST.js.html#line112">line 112</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glassfrog.html">glassfrog</a></li></ul><h3>Classes</h3><ul><li><a href="delete.html">delete</a></li><li><a href="get.html">get</a></li><li><a href="get_actions.html">actions</a></li><li><a href="get_actions_within.html">within</a></li><li><a href="get_actions_within_circles.html">circles</a></li><li><a href="get_checklistItems.html">checklistItems</a></li><li><a href="get_checklistItems_within.html">within</a></li><li><a href="get_checklistItems_within_circles.html">circles</a></li><li><a href="get_circles.html">circles</a></li><li><a href="get_graph.html">graph</a></li><li><a href="get_metrics.html">metrics</a></li><li><a href="get_metrics_within.html">within</a></li><li><a href="get_metrics_within_circles.html">circles</a></li><li><a href="get_people.html">people</a></li><li><a href="get_people_within.html">within</a></li><li><a href="get_people_within_circles.html">circles</a></li><li><a href="get_people_within_people.html">people</a></li><li><a href="get_projects.html">projects</a></li><li><a href="get_projects_within.html">within</a></li><li><a href="get_projects_within_circles.html">circles</a></li><li><a href="get_roles.html">roles</a></li><li><a href="get_roles_within.html">within</a></li><li><a href="get_roles_within_circles.html">circles</a></li><li><a href="get_roles_within_people.html">people</a></li><li><a href="get_triggers.html">triggers</a></li><li><a href="get_triggers_within_circles.html">circles</a></li><li><a href="patch.html">patch</a></li><li><a href="post.html">post</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Wed May 27 2015 10:34:29 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

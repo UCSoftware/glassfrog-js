@@ -1,8 +1,9 @@
 # GlassFrog.js - Version: 0.5.1
 
-A Node.js wrapper for the GlassFrog API.
+A Node.js wrapper for the GlassFrog® API.
 
-## Importing
+## Importing & Initialization
+Written with ♡ by your friends at [Undercurrent](http://www.undercurrent.com).
 
 To import this module:
 
@@ -13,31 +14,42 @@ var GlassFrog = require('glassfrog');
 
 2) Pass your API Key to the function that is imported.
 ```javascript
-var gf = GlassFrog($YOUR_API_KEY);
+var gf = GlassFrog(YOUR_API_KEY);
 ```
 
-###### There is also an optional *caching* flag which will store all fetched data locally in a cache. 
-###### By default this is disabled.
+Optionally, you may also specify the `caching` flag. If set to `true`
+fetched API data will be stored locally. The `get()` method (documented
+below) allows you to specify if you want to attempt to retrieve data
+instantaneously from the local cache or from the GlassFrog server.
 
-To turn it on, pass the API Key along with a true *caching* flag:
+The cache can dramatically speed up some of the organizational graph
+traversal methods.
+
+By default, caching is disabled. Turn it on by setting `caching` to
+`true`:
 
 ```javascript
-var gf = GlassFrog($YOUR_API_KEY, true);
+var gf = GlassFrog(YOUR_API_KEY, true);
 ```
 
-###### This only changes the behavior of GET methods.
+For more information [see](file:./docs/module-glassfrog.html).
 
-## Functions
+## Usage
 
-All complete query functions return an object with the *then(callback)* method.
+This library follows the [Promise pattern]( https://github.com/petkaantonov/bluebird/blob/master/API.md).
 
-*callback* is a function with the form *callback(response)* where **response** is an array with:
-* **response[0]** being the entire response.
-* **response[1]** being the body of the response.
+A method that returns a Promise should be processed with either
+`then(callback)` or `spread(callback)`. It is also strongly recommended
+that you add a `catch(callback)` to gather any thrown exceptions.
 
-*then(callback)* then returns an object with the *catch(error)* method.
+The `then(callback)` accepts a function taking a single parameter of
+the form `callback(response)` where `response` is an array with:
 
-*catch* is a function with the form *catch(error)* where **error** is an error.
+* `response[0]` being the entire response.
+* `response[1]` being the body of the response.
+
+`catch` is a function with the form `catch(error)` where `error` is
+an error object.
 
 The complete form of a function might look like:
 
@@ -49,30 +61,53 @@ gf.get().circles().withID($ID).then(function (response) {
 });
 ```
 
-###### Alternatively you can call the *spread(callback)* function to make the parameters more readable. 
-
-###### For example:
+Alternatively you can call the `spread(callback)` function to make the parameters more readable:
 
 ```javascript
-gf.get().circles().withID($ID).spread(function (response, body) {
-	console.log(JSON.parse(body));
+gf.get().circles().withID($ID).spread(function (response, data) {
+	console.log(data);
 }).catch(function(error) {
 	console.log("There was an " + error);
 });
 ```
+Note that `data` will automatically be parsed into an object for you if
+the call to the GlassFrog API was successful
 
-## [GET](/docs/GET.md)
+## [GET](file:./docs/get.html)
 
 These functions pull data from GlassFrog with GET HTTP requests.
 
-## [POST](docs/POST.md)
+## [POST](file:./docs/post.html)
 
 These functions push data to GlassFrog and create new objects with POST HTTP requests.
 
-## [PATCH](docs/PATCH.md)
+## [PATCH](file:./docs/patch.html)
 
 These functions modify existing data on GlassFrog with PATCH HTTP requests.
 
-## [DELETE](docs/DELETE.md)
+## [DELETE](file:./docs/delete.html)
 
 These functions delete existing data on GlassFrog with DELETE HTTP requests.
+
+## Authors
+
+This software has been authored in part by:
+
+   * Robert Wells <robert.wells@quirkyinc.com>
+   * Jordan Husney <jordan.husney@quirkyinc.com>
+
+## License
+
+Copyright [2015] [Undercurrent LLC]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.

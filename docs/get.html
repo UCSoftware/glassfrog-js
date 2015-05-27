@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: get</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: get</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        get
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="get"><span class="type-signature"></span>new get<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Retrieve information from the GlassFrog API.</p>
+<h3>General form:</h3><p>All GET functions begin with the <em>get</em> function.</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get() ...</code></pre><h6>Optionally, if <em>caching</em> has been turned on, you may check the cache for a value before doing a fetch.</h6><p>To do this, pass a true <em>cache</em> flag to the get function:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get(true) ...</code></pre><p>If <em>caching</em> is turned on all fetches will store a local copy.</p>
+<h6>If <em>caching</em> is NOT turned on, and a true <em>cache</em> flag is pass, an error will be thrown.</h6><h2>Circles</h2><p>Get all circles with an ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().circles().withID($ID).then(...).catch(...);</code></pre><p>Get all circles:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().circles().all().then(...).catch(...);</code></pre><h2>Roles</h2><p>Get all roles with an ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().roles().withID($ID).then(...).catch(...);</code></pre><p>Get all roles within some other type:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().roles().within() ...</code></pre><p> Get all roles within circles with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().roles().within().circles().withID($ID).then(...).catch(...);</code></pre><p>Get all roles within people with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().roles().within().people().withID($ID).then(...).catch(...);</code></pre><p>Get all roles:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().roles().all().then(...).catch(...);</code></pre><h2>People</h2><p>Get all people with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().people().withID($ID).then(...).catch(...);</code></pre><p>Get all people within some other type:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().people().within() ...</code></pre><p>Get all people within circles with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().people().within().circles().withID($ID).then(...).catch(...);</code></pre><p>Get all people within roles with name of <strong>'secretary'</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().people().within().roles().withName('secretary').then(...).catch(...);</code></pre><p>Get all people within roles with name of <strong>'rep link'</strong> or <strong>'rep_link'</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().people().within().roles().withName('rep_link').then(...).catch(...);</code></pre><pre class="prettyprint source lang-javascript"><code>gf.get().people().within().roles().withName('rep link').then(...).catch(...);</code></pre><p>Get all people within roles with name of <strong>'lead link'</strong> or <strong>'lead_link'</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().people().within().roles().withName('lead_link').then(...).catch(...);</code></pre><pre class="prettyprint source lang-javascript"><code>gf.get().people().within().roles().withName('lead link').then(...).catch(...);</code></pre><p>Get all people within roles with name of <strong>'facilitator'</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().people().within().roles().withName('facilitator').then(...).catch(...);</code></pre><p>Get all people:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().people().all().then(...).catch(...);</code></pre><h2>Projects</h2><p>Get all projects with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().projects().withID($ID).then(...).catch(...);</code></pre><p>Get all projects within some other type:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().projects().within() ...</code></pre><p>Get all projects within circles with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().projects().within().circles().withID($ID).then(...).catch(...);</code></pre><p>Get all projects:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().projects().all().then(...).catch(...);</code></pre><h2>Metrics</h2><p>Get all metrics with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().metrics().withID($ID).then(...).catch(...);</code></pre><p>Get all metrics within some other type:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().metrics().within() ...</code></pre><p>Get all metrics within circles with ID of <strong>$ID</strong> including global metrics:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().metrics().within().circles().withID($ID).withGlobals().then(...).catch(...);</code></pre><p>Get all metrics within circles with ID of <strong>$ID</strong> <strong>NOT</strong> including global metrics:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().metrics().within().circles().withID($ID).withoutGlobals().then(...).catch(...);</code></pre><p>Get all global metrics:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().metrics().globals().then(...).catch(...);</code></pre><p>Get all metrics:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().metrics().all().then(...).catch(...);</code></pre><h2>Checklist Items:</h2><pre class="prettyprint source lang-javascript"><code>gf.get().checklistItems().then(...).catch(...);</code></pre><p>Get all checklist items with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().checklistItems().withID($ID).then(...).catch(...);</code></pre><p>Get all checklist items with some other type:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().checklistItems().within() ...</code></pre><p>Get all checklist items within circles with ID of <strong>$ID</strong> including global checklist items:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().checklistItems().within().circles().withID($ID).withGlobals().then(...).catch(...);</code></pre><p>Get all checklist items within circles with ID of <strong>$ID</strong> <strong>NOT</strong> including global checklist items:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().checklistItems().within().circles().withID($ID).withoutGlobals().then(...).catch(...);</code></pre><p>Get all global checklist items:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().checklistItems().globals().then(...).catch(...);</code></pre><p>Get all checklist items:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().checklistItems().all().then(...).catch(...);</code></pre><h2>Actions</h2><p>Get all actions with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().actions().withID($ID).then(...).catch(...);</code></pre><p>Get all actions within some other type:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().actions().within() ...</code></pre><p>Get all actions within circles with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().actions().within().circles().withID($ID).then(...).catch(...);</code></pre><p>Get all actions within people with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().actions().within().people().withID($ID).then(...).catch(...);</code></pre><p>Get all actions created since date of <strong>$DATE</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().actions().createdSince($DATE).then(...).catch(...);</code></pre><p>Get all actions:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().actions().all().then(...).catch(...);</code></pre><h2>Triggers</h2><p>Get all triggers with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().triggers().withID($ID).then(...).catch(...);</code></pre><p>Get all triggers within some other type:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().triggers().within() ...</code></pre><p>Get all triggers within circles with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().triggers().within().circles().withID($ID).then(...).catch(...);</code></pre><p>Get all triggers within people with ID of <strong>$ID</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().triggers().within().people().withID($ID).then(...).catch(...);</code></pre><p>Get all triggers created since date of <strong>$DATE</strong>:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().triggers().createdSince($DATE).then(...).catch(...);</code></pre><p>Get all triggers:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().triggers().all().then(...).catch(...);</code></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="GET.js.html">GET.js</a>, <a href="GET.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="get_actions.html">actions</a></dt>
+            <dd></dd>
+        
+            <dt><a href="get_checklistItems.html">checklistItems</a></dt>
+            <dd></dd>
+        
+            <dt><a href="get_circles.html">circles</a></dt>
+            <dd></dd>
+        
+            <dt><a href="get_graph.html">graph</a></dt>
+            <dd></dd>
+        
+            <dt><a href="get_metrics.html">metrics</a></dt>
+            <dd></dd>
+        
+            <dt><a href="get_people.html">people</a></dt>
+            <dd></dd>
+        
+            <dt><a href="get_projects.html">projects</a></dt>
+            <dd></dd>
+        
+            <dt><a href="get_roles.html">roles</a></dt>
+            <dd></dd>
+        
+            <dt><a href="get_triggers.html">triggers</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glassfrog.html">glassfrog</a></li></ul><h3>Classes</h3><ul><li><a href="delete.html">delete</a></li><li><a href="get.html">get</a></li><li><a href="get_actions.html">actions</a></li><li><a href="get_actions_within.html">within</a></li><li><a href="get_actions_within_circles.html">circles</a></li><li><a href="get_checklistItems.html">checklistItems</a></li><li><a href="get_checklistItems_within.html">within</a></li><li><a href="get_checklistItems_within_circles.html">circles</a></li><li><a href="get_circles.html">circles</a></li><li><a href="get_graph.html">graph</a></li><li><a href="get_metrics.html">metrics</a></li><li><a href="get_metrics_within.html">within</a></li><li><a href="get_metrics_within_circles.html">circles</a></li><li><a href="get_people.html">people</a></li><li><a href="get_people_within.html">within</a></li><li><a href="get_people_within_circles.html">circles</a></li><li><a href="get_people_within_people.html">people</a></li><li><a href="get_projects.html">projects</a></li><li><a href="get_projects_within.html">within</a></li><li><a href="get_projects_within_circles.html">circles</a></li><li><a href="get_roles.html">roles</a></li><li><a href="get_roles_within.html">within</a></li><li><a href="get_roles_within_circles.html">circles</a></li><li><a href="get_roles_within_people.html">people</a></li><li><a href="get_triggers.html">triggers</a></li><li><a href="get_triggers_within_circles.html">circles</a></li><li><a href="patch.html">patch</a></li><li><a href="post.html">post</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Wed May 27 2015 10:34:29 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

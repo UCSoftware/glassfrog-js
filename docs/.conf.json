@@ -1,0 +1,12 @@
+{
+    "plugins": [
+      "plugins/markdown"
+    ],
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true
+    },
+    "opts": {
+        "encoding": "utf8"
+    }
+}

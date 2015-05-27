@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>GlassFrog.js - Version: 0.5.1</h1><p>A Node.js wrapper for the GlassFrog® API.</p>
+<h2>Importing &amp; Initialization</h2><p>Written with ♡ by your friends at <a href="http://www.undercurrent.com">Undercurrent</a>.</p>
+<p>To import this module:</p>
+<p>1) Require the module.</p>
+<pre class="prettyprint source lang-javascript"><code>var GlassFrog = require('glassfrog');</code></pre><p>2) Pass your API Key to the function that is imported.</p>
+<pre class="prettyprint source lang-javascript"><code>var gf = GlassFrog(YOUR_API_KEY);</code></pre><p>Optionally, you may also specify the <code>caching</code> flag. If set to <code>true</code>
+fetched API data will be stored locally. The <code>get()</code> method (documented
+below) allows you to specify if you want to attempt to retrieve data
+instantaneously from the local cache or from the GlassFrog server.</p>
+<p>The cache can dramatically speed up some of the organizational graph
+traversal methods.</p>
+<p>By default, caching is disabled. Turn it on by setting <code>caching</code> to
+<code>true</code>:</p>
+<pre class="prettyprint source lang-javascript"><code>var gf = GlassFrog(YOUR_API_KEY, true);</code></pre><p>For more information <a href="file:./docs/module-glassfrog.html">see</a>.</p>
+<h2>Usage</h2><p>This library follows the <a href="https://github.com/petkaantonov/bluebird/blob/master/API.md">Promise pattern</a>.</p>
+<p>A method that returns a Promise should be processed with either
+<code>then(callback)</code> or <code>spread(callback)</code>. It is also strongly recommended
+that you add a <code>catch(callback)</code> to gather any thrown exceptions.</p>
+<p>The <code>then(callback)</code> accepts a function taking a single parameter of
+the form <code>callback(response)</code> where <code>response</code> is an array with:</p>
+<ul>
+<li><code>response[0]</code> being the entire response.</li>
+<li><code>response[1]</code> being the body of the response.</li>
+</ul>
+<p><code>catch</code> is a function with the form <code>catch(error)</code> where <code>error</code> is
+an error object.</p>
+<p>The complete form of a function might look like:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().circles().withID($ID).then(function (response) {
+    console.log(JSON.parse(response[1]));
+}).catch(function (error) {
+    console.log(&quot;There was an &quot; + error);
+});</code></pre><p>Alternatively you can call the <code>spread(callback)</code> function to make the parameters more readable:</p>
+<pre class="prettyprint source lang-javascript"><code>gf.get().circles().withID($ID).spread(function (response, data) {
+    console.log(data);
+}).catch(function(error) {
+    console.log(&quot;There was an &quot; + error);
+});</code></pre><p>Note that <code>data</code> will automatically be parsed into an object for you if
+the call to the GlassFrog API was successful</p>
+<h2><a href="file:./docs/get.html">GET</a></h2><p>These functions pull data from GlassFrog with GET HTTP requests.</p>
+<h2><a href="file:./docs/post.html">POST</a></h2><p>These functions push data to GlassFrog and create new objects with POST HTTP requests.</p>
+<h2><a href="file:./docs/patch.html">PATCH</a></h2><p>These functions modify existing data on GlassFrog with PATCH HTTP requests.</p>
+<h2><a href="file:./docs/delete.html">DELETE</a></h2><p>These functions delete existing data on GlassFrog with DELETE HTTP requests.</p>
+<h2>Authors</h2><p>This software has been authored in part by:</p>
+<ul>
+<li>Robert Wells <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#114;&#111;&#98;&#101;&#x72;&#x74;&#46;&#x77;&#101;&#108;&#x6c;&#115;&#x40;&#113;&#117;&#105;&#114;&#x6b;&#x79;&#105;&#110;&#99;&#46;&#99;&#x6f;&#109;">&#114;&#111;&#98;&#101;&#x72;&#x74;&#46;&#x77;&#101;&#108;&#x6c;&#115;&#x40;&#113;&#117;&#105;&#114;&#x6b;&#x79;&#105;&#110;&#99;&#46;&#99;&#x6f;&#109;</a></li>
+<li>Jordan Husney <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#x6a;&#x6f;&#114;&#x64;&#97;&#x6e;&#x2e;&#x68;&#x75;&#115;&#110;&#101;&#x79;&#x40;&#113;&#x75;&#105;&#x72;&#107;&#121;&#105;&#110;&#99;&#46;&#x63;&#x6f;&#x6d;">&#x6a;&#x6f;&#114;&#x64;&#97;&#x6e;&#x2e;&#x68;&#x75;&#115;&#110;&#101;&#x79;&#x40;&#113;&#x75;&#105;&#x72;&#107;&#121;&#105;&#110;&#99;&#46;&#x63;&#x6f;&#x6d;</a></li>
+</ul>
+<h2>License</h2><p>Copyright [2015] [Undercurrent LLC]</p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<pre class="prettyprint source"><code>http://www.apache.org/licenses/LICENSE-2.0</code></pre><p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glassfrog.html">glassfrog</a></li></ul><h3>Classes</h3><ul><li><a href="delete.html">delete</a></li><li><a href="get.html">get</a></li><li><a href="get_actions.html">actions</a></li><li><a href="get_actions_within.html">within</a></li><li><a href="get_actions_within_circles.html">circles</a></li><li><a href="get_checklistItems.html">checklistItems</a></li><li><a href="get_checklistItems_within.html">within</a></li><li><a href="get_checklistItems_within_circles.html">circles</a></li><li><a href="get_circles.html">circles</a></li><li><a href="get_graph.html">graph</a></li><li><a href="get_metrics.html">metrics</a></li><li><a href="get_metrics_within.html">within</a></li><li><a href="get_metrics_within_circles.html">circles</a></li><li><a href="get_people.html">people</a></li><li><a href="get_people_within.html">within</a></li><li><a href="get_people_within_circles.html">circles</a></li><li><a href="get_people_within_people.html">people</a></li><li><a href="get_projects.html">projects</a></li><li><a href="get_projects_within.html">within</a></li><li><a href="get_projects_within_circles.html">circles</a></li><li><a href="get_roles.html">roles</a></li><li><a href="get_roles_within.html">within</a></li><li><a href="get_roles_within_circles.html">circles</a></li><li><a href="get_roles_within_people.html">people</a></li><li><a href="get_triggers.html">triggers</a></li><li><a href="get_triggers_within_circles.html">circles</a></li><li><a href="patch.html">patch</a></li><li><a href="post.html">post</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Wed May 27 2015 10:34:29 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
