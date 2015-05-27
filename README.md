@@ -73,19 +73,19 @@ gf.get().circles().withID($ID).spread(function (response, data) {
 Note that `data` will automatically be parsed into an object for you if
 the call to the GlassFrog API was successful
 
-## [GET](file:./docs/get.html)
+## [GET](docs/get.html)
 
 These functions pull data from GlassFrog with GET HTTP requests.
 
-## [POST](file:./docs/post.html)
+## [POST](docs/post.html)
 
 These functions push data to GlassFrog and create new objects with POST HTTP requests.
 
-## [PATCH](file:./docs/patch.html)
+## [PATCH](docs/patch.html)
 
 These functions modify existing data on GlassFrog with PATCH HTTP requests.
 
-## [DELETE](file:./docs/delete.html)
+## [DELETE](docs/delete.html)
 
 These functions delete existing data on GlassFrog with DELETE HTTP requests.
 
