@@ -3,6 +3,7 @@
 A Node.js wrapper for the GlassFrog® API.
 
 ## Importing & Initialization
+
 Written with ♡ by your friends at [Undercurrent](http://www.undercurrent.com).
 
 To import this module:
@@ -73,21 +74,29 @@ gf.get().circles().withID($ID).spread(function (response, data) {
 Note that `data` will automatically be parsed into an object for you if
 the call to the GlassFrog API was successful
 
-## [GET](docs/get.html)
+## GET
 
 These functions pull data from GlassFrog with GET HTTP requests.
 
-## [POST](docs/post.html)
+See [get documentation](docs/get.html).
+
+## POST
 
 These functions push data to GlassFrog and create new objects with POST HTTP requests.
 
-## [PATCH](docs/patch.html)
+See [post documentation](docs/post.html).
+
+## PATCH
 
 These functions modify existing data on GlassFrog with PATCH HTTP requests.
 
-## [DELETE](docs/delete.html)
+See [patch documentation](docs/patch.html).
+
+## DELETE
 
 These functions delete existing data on GlassFrog with DELETE HTTP requests.
+
+See [delete documentation](docs/delete.html).
 
 ## Authors
 
@@ -98,7 +107,7 @@ This software has been authored in part by:
 
 ## License
 
-Copyright [2015] [Undercurrent LLC]
+Copyright 2015 [Undercurrent](http://www.undercurrent.com)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
