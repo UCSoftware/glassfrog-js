@@ -78,25 +78,25 @@ the call to the GlassFrog API was successful
 
 These functions pull data from GlassFrog with GET HTTP requests.
 
-See [get documentation](docs/get.html).
+See [get documentation](docs/GET.md).
 
 ## POST
 
 These functions push data to GlassFrog and create new objects with POST HTTP requests.
 
-See [post documentation](docs/post.html).
+See [post documentation](docs/POST.md).
 
 ## PATCH
 
 These functions modify existing data on GlassFrog with PATCH HTTP requests.
 
-See [patch documentation](docs/patch.html).
+See [patch documentation](docs/PATCH.md).
 
 ## DELETE
 
 These functions delete existing data on GlassFrog with DELETE HTTP requests.
 
-See [delete documentation](docs/delete.html).
+See [delete documentation](docs/DELETE.md).
 
 ## Authors
 

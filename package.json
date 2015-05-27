@@ -5,7 +5,7 @@
   "main": "./lib/glassfrog.js",
   "scripts": {
     "test": "mocha tests/*.js",
-    "docs": "rm -rf docs/* ; jsdoc -c docs/.conf.json -d docs/ -R README.md lib/*.js"
+    "docs": "rm -rf docs/html/* ; jsdoc -c docs/.conf.json -d docs/html -R README.md -u docs/ lib/*.js"
   },
   "repository": {
     "type": "git",
