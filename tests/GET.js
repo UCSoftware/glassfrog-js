@@ -515,12 +515,23 @@ describe("GET", function() {
     });
   });
   describe("With Caching", function() {
-    var gf = GlassFrog(locals.API_KEY, true)
+    var gf = GlassFrog(locals.API_KEY, {
+      caching: true
+    });
     describe('Build the Cache', function () {
       testMethods(this, gf, 0, true);
     });
     describe('Poll the Cache', function () {
       testMethods(this, gf, 500, true);
+    });
+  });
+  describe("With Persistence", function () {
+    var gf = GlassFrog(locals.API_KEY, {
+      caching: false,
+      persistence: true
+    });
+    describe('Poll the API', function() {
+      testMethods(this, gf, 0, false);
     });
   });
 });

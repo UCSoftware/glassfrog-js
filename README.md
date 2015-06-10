@@ -18,7 +18,22 @@ var GlassFrog = require('glassfrog');
 var gf = GlassFrog(YOUR_API_KEY);
 ```
 
-Optionally, you may also specify the `caching` flag. If set to `true`
+You may optionally specify several `options`.
+
+You may specify the `persistence` flag. If set to `true`
+GlassFrog.js will not accept 403 Forbidden responses on GET requests.
+This allows a work around for the API rejecting a large amount of requests.
+
+By default, persistence is disabled. Turn it on by setting the `persistence` `options` to
+`true`:
+
+```javascript
+var gf = GlassFrog(YOUR_API_KEY, {
+    persistence: true
+});
+```
+
+You may also specify the `caching` flag. If set to `true`
 fetched API data will be stored locally. The `get()` method (documented
 below) allows you to specify if you want to attempt to retrieve data
 instantaneously from the local cache or from the GlassFrog server.
@@ -26,11 +41,13 @@ instantaneously from the local cache or from the GlassFrog server.
 The cache can dramatically speed up some of the organizational graph
 traversal methods.
 
-By default, caching is disabled. Turn it on by setting `caching` to
+By default, caching is disabled. Turn it on by setting the `caching` `options` to
 `true`:
 
 ```javascript
-var gf = GlassFrog(YOUR_API_KEY, true);
+var gf = GlassFrog(YOUR_API_KEY, {
+    caching: true
+});
 ```
 
 For more information [see](file:./docs/module-glassfrog.html).

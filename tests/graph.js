@@ -4,7 +4,9 @@ var    assert = require('assert'),
        locals = require('./locals.js'),
             _ = require('underscore');
 
-var gf = GlassFrog(locals.API_KEY, true);
+var gf = GlassFrog(locals.API_KEY, {
+  caching: true
+});
 
 describe('get().graph().rootCircle()', function () {
   this.timeout(0);
