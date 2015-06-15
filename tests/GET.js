@@ -5,29 +5,20 @@ var assert = require('assert'),
 
 var DATE = '2000-05-19T07:31:23+00:00';
 
-var randomID = Math.floor(Math.random() * 10000),
-  role_names = ['secretary', 'rep link', 'rep_link', 'lead link', 'lead_link', 'facilitator'];
+var role_names = ['secretary', 'rep link', 'rep_link', 'lead link', 'lead_link', 'facilitator'];
+
+var circleID, roleID, personID, projectID, metricID, checklistItemID, actionID, triggerID;
+
+var metrics, checklistItems, actions, triggers;
 
 function testMethods(context, gf, timeout, cache) {
   context.timeout(timeout);
   describe('circles', function() {
-    describe('withID', function() {
-      it('Should return 200 OK or 404 Not Found', function(done) {
-        gf.get(cache).circles().withID(randomID).spread(function (response, data) {
-          if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
-            done();
-          } else {
-            done(new Error('Not Ok. ' + response.headers.status));
-          }
-        }).catch(function (error) {
-          if (error) throw error;
-        });
-      });
-    });
     describe('all', function() {
       it('Should return 200 OK', function(done) {
         gf.get(cache).circles().all().spread(function (response, data) {
           if (response.headers.status === '200 OK') {
+            circleID = data.circles[0].id;
             done();
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -37,56 +28,9 @@ function testMethods(context, gf, timeout, cache) {
         });
       });
     });
-  });
-  describe('roles', function() {
     describe('withID', function() {
-      it('Should return 200 OK or 404 Not Found', function(done) {
-        gf.get(cache).roles().withID(randomID).spread(function (response, data) {
-          if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
-            done();
-          } else {
-            done(new Error('Not Ok. ' + response.headers.status));
-          }
-        }).catch(function (error) {
-          if (error) throw error;
-        });
-      });
-    });
-    describe('within', function() {
-      describe('circles', function() {
-        describe('withID', function() {
-          it('Should return 200 OK or 404 Not Found', function(done) {
-            gf.get(cache).roles().within().circles().withID(randomID).spread(function (response, data) {
-              if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
-                done();
-              } else {
-                done(new Error('Not Ok. ' + response.headers.status));
-              }
-            }).catch(function (error) {
-              if (error) throw error;
-            });
-          });
-        });
-      });
-      describe('people', function() {
-        describe('withID', function() {
-          it('Should return 200 OK or 404 Not Found', function(done) {
-            gf.get(cache).roles().within().people().withID(randomID).spread(function (response, data) {
-              if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
-                done();
-              } else {
-                done(new Error('Not Ok. ' + response.headers.status));
-              }
-            }).catch(function (error) {
-              if (error) throw error;
-            });
-          });
-        });
-      });
-    });
-    describe('all', function() {
       it('Should return 200 OK', function(done) {
-        gf.get(cache).roles().all().spread(function (response, data) {
+        gf.get(cache).circles().withID(circleID).spread(function (response, data) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
@@ -99,10 +43,24 @@ function testMethods(context, gf, timeout, cache) {
     });
   });
   describe('people', function() {
+    describe('all', function() {
+      it('Should return 200 OK', function(done) {
+        gf.get(cache).people().all().spread(function (response, data) {
+          if (response.headers.status === '200 OK') {
+            personID = data.people[0].id;
+            done();
+          } else {
+            done(new Error('Not Ok. ' + response.headers.status));
+          }
+        }).catch(function (error) {
+          if (error) throw error;
+        });
+      });
+    });
     describe('withID', function() {
-      it('Should return 200 OK or 404 Not Found', function(done) {
-        gf.get(cache).people().withID(randomID).spread(function (response, data) {
-          if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+      it('Should return 200 OK', function(done) {
+        gf.get(cache).people().withID(personID).spread(function (response, data) {
+          if (response.headers.status === '200 OK') {
             done();
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -115,9 +73,9 @@ function testMethods(context, gf, timeout, cache) {
     describe('within', function() {
       describe('circles', function() {
         describe('withID', function() {
-          it('Should return 200 OK or 404 Not Found', function(done) {
-            gf.get(cache).people().within().circles().withID(randomID).spread(function (response, data) {
-              if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+          it('Should return 200 OK', function(done) {
+            gf.get(cache).people().within().circles().withID(circleID).spread(function (response, data) {
+              if (response.headers.status === '200 OK') {
                 done();
               } else {
                 done(new Error('Not Ok. ' + response.headers.status));
@@ -132,9 +90,9 @@ function testMethods(context, gf, timeout, cache) {
         describe('withName', function() {
           role_names.forEach(function (name) {
             describe(name, function () {
-              it('Should return 200 OK or 404 Not Found', function(done) {
+              it('Should return 200 OK', function(done) {
                 gf.get(cache).people().within().roles().withName(name).spread(function (response, data) {
-                  if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+                  if (response.headers.status === '200 OK') {
                     done();
                   } else {
                     done(new Error('Not Ok. ' + response.headers.status));
@@ -148,10 +106,13 @@ function testMethods(context, gf, timeout, cache) {
         });
       });
     });
+  });
+  describe('roles', function() {
     describe('all', function() {
       it('Should return 200 OK', function(done) {
-        gf.get(cache).people().all().spread(function (response, data) {
+        gf.get(cache).roles().all().spread(function (response, data) {
           if (response.headers.status === '200 OK') {
+            roleID = data.roles[0].id;
             done();
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -161,12 +122,10 @@ function testMethods(context, gf, timeout, cache) {
         });
       });
     });
-  });
-  describe('projects', function() {
     describe('withID', function() {
-      it('Should return 200 OK or 404 Not Found', function(done) {
-        gf.get(cache).projects().withID(randomID).spread(function (response, data) {
-          if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+      it('Should return 200 OK', function(done) {
+        gf.get(cache).roles().withID(roleID).spread(function (response, data) {
+          if (response.headers.status === '200 OK') {
             done();
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -179,9 +138,70 @@ function testMethods(context, gf, timeout, cache) {
     describe('within', function() {
       describe('circles', function() {
         describe('withID', function() {
-          it('Should return 200 OK or 404 Not Found', function(done) {
-            gf.get(cache).projects().within().circles().withID(randomID).spread(function (response, data) {
-              if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+          it('Should return 200 OK', function(done) {
+            gf.get(cache).roles().within().circles().withID(circleID).spread(function (response, data) {
+              if (response.headers.status === '200 OK') {
+                done();
+              } else {
+                done(new Error('Not Ok. ' + response.headers.status));
+              }
+            }).catch(function (error) {
+              if (error) throw error;
+            });
+          });
+        });
+      });
+      describe('people', function() {
+        describe('withID', function() {
+          it('Should return 200 OK', function(done) {
+            gf.get(cache).roles().within().people().withID(personID).spread(function (response, data) {
+              if (response.headers.status === '200 OK') {
+                done();
+              } else {
+                done(new Error('Not Ok. ' + response.headers.status));
+              }
+            }).catch(function (error) {
+              if (error) throw error;
+            });
+          });
+        });
+      });
+    });
+  });
+  describe('projects', function() {
+    describe('all', function() {
+      it('Should return 200 OK', function(done) {
+        gf.get(cache).projects().all().spread(function (response, data) {
+          if (response.headers.status === '200 OK') {
+            projectID = data.projects[0].id;
+            done();
+          } else {
+            done(new Error('Not Ok. ' + response.headers.status));
+          }
+        }).catch(function (error) {
+          if (error) throw error;
+        });
+      });
+    });
+    describe('withID', function() {
+      it('Should return 200 OK', function(done) {
+        gf.get(cache).projects().withID(projectID).spread(function (response, data) {
+          if (response.headers.status === '200 OK') {
+            done();
+          } else {
+            done(new Error('Not Ok. ' + response.headers.status));
+          }
+        }).catch(function (error) {
+          if (error) throw error;
+        });
+      });
+    });
+    describe('within', function() {
+      describe('circles', function() {
+        describe('withID', function() {
+          it('Should return 200 OK', function(done) {
+            gf.get(cache).projects().within().circles().withID(circleID).spread(function (response, data) {
+              if (response.headers.status === '200 OK') {
                 done();
               } else {
                 done(new Error('Not Ok. ' + response.headers.status));
@@ -195,10 +215,25 @@ function testMethods(context, gf, timeout, cache) {
     });
   });
   describe('metrics', function() {
+    describe('all', function() {
+      it('Should return 200 OK', function(done) {
+        gf.get(cache).metrics().all().spread(function (response, data) {
+          if (response.headers.status === '200 OK') {
+            metricID = data.metrics[0].id;
+            metrics = data.metrics;
+            done();
+          } else {
+            done(new Error('Not Ok. ' + response.headers.status));
+          }
+        }).catch(function (error) {
+          if (error) throw error;
+        });
+      });
+    });
     describe('withID', function() {
-      it('Should return 200 OK or 404 Not Found', function(done) {
-        gf.get(cache).metrics().withID(randomID).spread(function (response, data) {
-          if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+      it('Should return 200 OK', function(done) {
+        gf.get(cache).metrics().withID(metricID).spread(function (response, data) {
+          if (response.headers.status === '200 OK') {
             done();
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -212,9 +247,9 @@ function testMethods(context, gf, timeout, cache) {
       describe('circles', function() {
         describe('withID', function() {
           describe('withGlobals', function() {
-            it('Should return 200 OK or 404 Not Found', function(done) {
-              gf.get(cache).metrics().within().circles().withID(randomID).withGlobals().spread(function (response, data) {
-                if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+            it('Should return 200 OK', function(done) {
+              gf.get(cache).metrics().within().circles().withID(circleID).withGlobals().spread(function (response, data) {
+                if (response.headers.status === '200 OK') {
                   done();
                 } else {
                   done(new Error('Not Ok. ' + response.headers.status));
@@ -225,9 +260,9 @@ function testMethods(context, gf, timeout, cache) {
             });
           });
           describe('withoutGlobals', function() {
-            it('Should return 200 OK or 404 Not Found', function(done) {
-              gf.get(cache).metrics().within().circles().withID(randomID).withoutGlobals().spread(function (response, data) {
-                if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+            it('Should return 200 OK', function(done) {
+              gf.get(cache).metrics().within().circles().withID(circleID).withoutGlobals().spread(function (response, data) {
+                if (response.headers.status === '200 OK') {
                   done();
                 } else {
                   done(new Error('Not Ok. ' + response.headers.status));
@@ -253,10 +288,13 @@ function testMethods(context, gf, timeout, cache) {
         });
       });
     });
+  });
+  describe('checklistItems', function() {
     describe('all', function() {
       it('Should return 200 OK', function(done) {
-        gf.get(cache).projects().all().spread(function (response, data) {
+        gf.get(cache).checklistItems().all().spread(function (response, data) {
           if (response.headers.status === '200 OK') {
+            checklistItemID = data.checklist_items[0].id;
             done();
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -266,12 +304,10 @@ function testMethods(context, gf, timeout, cache) {
         });
       });
     });
-  });
-  describe('checklistItems', function() {
     describe('withID', function() {
-      it('Should return 200 OK or 404 Not Found', function(done) {
-        gf.get(cache).checklistItems().withID(randomID).spread(function (response, data) {
-          if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+      it('Should return 200 OK', function(done) {
+        gf.get(cache).checklistItems().withID(checklistItemID).spread(function (response, data) {
+          if (response.headers.status === '200 OK') {
             done();
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -285,8 +321,8 @@ function testMethods(context, gf, timeout, cache) {
       describe('circles', function() {
         describe('withID', function() {
           describe('withGlobals', function() {
-            it('Should return 200 OK or 404 Not Found', function(done) {
-              gf.get(cache).checklistItems().within().circles().withID(randomID).withGlobals().spread(function (response, data) {
+            it('Should return 200 OK', function(done) {
+              gf.get(cache).checklistItems().within().circles().withID(circleID).withGlobals().spread(function (response, data) {
                 if (response.headers.status === '200 OK' ||
                   response.headers.status === '404 Not Found') {
                   done();
@@ -299,9 +335,9 @@ function testMethods(context, gf, timeout, cache) {
             });
           });
           describe('withoutGlobals', function() {
-            it('Should return 200 OK or 404 Not Found', function(done) {
-              gf.get(cache).checklistItems().within().circles().withID(randomID).withoutGlobals().spread(function (response, data) {
-                if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+            it('Should return 200 OK', function(done) {
+              gf.get(cache).checklistItems().within().circles().withID(circleID).withoutGlobals().spread(function (response, data) {
+                if (response.headers.status === '200 OK') {
                   done();
                 } else {
                   done(new Error('Not Ok. ' + response.headers.status));
@@ -327,10 +363,13 @@ function testMethods(context, gf, timeout, cache) {
         });
       });
     });
+  });
+  describe('actions', function() {
     describe('all', function() {
       it('Should return 200 OK', function(done) {
-        gf.get(cache).checklistItems().all().spread(function (response, data) {
+        gf.get(cache).actions().all().spread(function (response, data) {
           if (response.headers.status === '200 OK') {
+            actionID = data.actions[0].id;
             done();
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -340,12 +379,10 @@ function testMethods(context, gf, timeout, cache) {
         });
       });
     });
-  });
-  describe('actions', function() {
     describe('withID', function() {
-      it('Should return 200 OK or 404 Not Found', function(done) {
-        gf.get(cache).actions().withID(randomID).spread(function (response, data) {
-          if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+      it('Should return 200 OK', function(done) {
+        gf.get(cache).actions().withID(actionID).spread(function (response, data) {
+          if (response.headers.status === '200 OK') {
             done();
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -358,9 +395,9 @@ function testMethods(context, gf, timeout, cache) {
     describe('within', function() {
       describe('circles', function() {
         describe('withID', function() {
-          it('Should return 200 OK or 404 Not Found', function(done) {
-            gf.get(cache).actions().within().circles().withID(randomID).spread(function (response, data) {
-              if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+          it('Should return 200 OK', function(done) {
+            gf.get(cache).actions().within().circles().withID(circleID).spread(function (response, data) {
+              if (response.headers.status === '200 OK') {
                 done();
               } else {
                 done(new Error('Not Ok. ' + response.headers.status));
@@ -373,9 +410,9 @@ function testMethods(context, gf, timeout, cache) {
       });
       describe('people', function() {
         describe('withID', function() {
-          it('Should return 200 OK or 404 Not Found', function(done) {
-            gf.get(cache).actions().within().people().withID(randomID).spread(function (response, data) {
-              if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+          it('Should return 200 OK', function(done) {
+            gf.get(cache).actions().within().people().withID(personID).spread(function (response, data) {
+              if (response.headers.status === '200 OK') {
                 done();
               } else {
                 done(new Error('Not Ok. ' + response.headers.status));
@@ -400,10 +437,13 @@ function testMethods(context, gf, timeout, cache) {
         });
       });
     });
+  });
+  describe('triggers', function() {
     describe('all', function() {
       it('Should return 200 OK', function(done) {
-        gf.get(cache).actions().all().spread(function (response, data) {
+        gf.get(cache).triggers().all().spread(function (response, data) {
           if (response.headers.status === '200 OK') {
+            triggerID = data.triggers[0].id;
             done();
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -413,12 +453,10 @@ function testMethods(context, gf, timeout, cache) {
         });
       });
     });
-  });
-  describe('triggers', function() {
     describe('withID', function() {
-      it('Should return 200 OK or 404 Not Found', function(done) {
-        gf.get(cache).triggers().withID(randomID).spread(function (response, data) {
-          if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+      it('Should return 200 OK', function(done) {
+        gf.get(cache).triggers().withID(triggerID).spread(function (response, data) {
+          if (response.headers.status === '200 OK') {
             done();
           } else {
             done(new Error('Not Ok. ' + response.headers.status));
@@ -431,9 +469,9 @@ function testMethods(context, gf, timeout, cache) {
     describe('within', function() {
       describe('circles', function() {
         describe('withID', function() {
-          it('Should return 200 OK or 404 Not Found', function(done) {
-            gf.get(cache).triggers().within().circles().withID(randomID).spread(function (response, data) {
-              if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+          it('Should return 200 OK', function(done) {
+            gf.get(cache).triggers().within().circles().withID(circleID).spread(function (response, data) {
+              if (response.headers.status === '200 OK') {
                 done();
               } else {
                 done(new Error('Not Ok. ' + response.headers.status));
@@ -446,9 +484,9 @@ function testMethods(context, gf, timeout, cache) {
       });
       describe('people', function() {
         describe('withID', function() {
-          it('Should return 200 OK or 404 Not Found', function(done) {
-            gf.get(cache).triggers().within().people().withID(randomID).spread(function (response, data) {
-              if (response.headers.status === '200 OK' || response.headers.status === '404 Not Found') {
+          it('Should return 200 OK', function(done) {
+            gf.get(cache).triggers().within().people().withID(personID).spread(function (response, data) {
+              if (response.headers.status === '200 OK') {
                 done();
               } else {
                 done( new Error('(Not Ok. ' + response.headers.status));
@@ -463,19 +501,6 @@ function testMethods(context, gf, timeout, cache) {
     describe('createdSince', function() {
       it('Should return 200 OK', function(done) {
         gf.get(cache).triggers().createdSince(DATE).spread(function (response, data) {
-          if (response.headers.status === '200 OK') {
-            done();
-          } else {
-            done(new Error('Not Ok. ' + response.headers.status));
-          }
-        }).catch(function (error) {
-          if (error) throw error;
-        });
-      });
-    });
-    describe('all', function() {
-      it('Should return 200 OK', function(done) {
-        gf.get(cache).triggers().all().spread(function (response, data) {
           if (response.headers.status === '200 OK') {
             done();
           } else {
